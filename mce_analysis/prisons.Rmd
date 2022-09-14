@@ -1,0 +1,108 @@
+---
+title: "Legder Data -- Maryland Correctional Enterprises"
+by: Shreya Vuttaluru
+output: html_notebook
+---
+
+```{r}
+
+library(tidyverse)
+#install.packages("dplyr")
+library(janitor)
+library(lubridate)
+library(censusxy)
+library(dplyr)
+library(parallel)
+library(tictoc)
+library(furrr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+#install.packages("sp")
+library(sp)
+#install.packages("readxl")
+library(readxl)
+library(data.table)
+library(jsonlite)
+library(geojsonsf)
+library(geojsonio)
+#install.packages(c("rgdal", "tidycensus"))
+library(tidycensus)
+#install.packages("fuzzyjoin")
+library(fuzzyjoin)
+#install.packages("stringdist")
+library(stringdist)
+#install.packages("rmapzen")
+library(rmapzen)
+#install.packages("writexl")
+library(writexl)
+library(rgdal)
+#install.packages("spatialEco")
+library(spatialEco)
+#install.packages("raster")
+library(raster)
+library(dplyr)
+
+```
+
+Reading in data
+```{r}
+
+ledger_2017 <- read_excel("ledger_data/2017.xls")
+ledger_2018 <- read_excel("ledger_data/2018.xls")
+ledger_2019 <- read_excel("ledger_data/2019.xls")
+ledger_2020 <- read_excel("ledger_data/2020.xls")
+ledger_2021 <- read_excel("ledger_data/2021.xlsx")
+
+```
+
+Analysis!
+```{r}
+### Filtering for Maryland correctional enterprises in each year
+correctional_spending_2017 <- ledger_2017 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2017 %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+correctional_spending_2018 <- ledger_2018 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2018 %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+correctional_spending_2019 <- ledger_2019 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2019 %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+correctional_spending_2020 <- ledger_2020 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2020 %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+correctional_spending_2021 <- ledger_2021 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2021 %>%
+  summarize(
+    sum(amt_paid)
+  )
+
+
+```
