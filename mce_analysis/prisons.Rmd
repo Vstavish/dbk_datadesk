@@ -10,6 +10,7 @@ library(tidyverse)
 #install.packages("dplyr")
 library(janitor)
 library(lubridate)
+#install.packages("censusxy")
 library(censusxy)
 library(dplyr)
 library(parallel)
@@ -53,6 +54,7 @@ ledger_2018 <- read_excel("ledger_data/2018.xls")
 ledger_2019 <- read_excel("ledger_data/2019.xls")
 ledger_2020 <- read_excel("ledger_data/2020.xls")
 ledger_2021 <- read_excel("ledger_data/2021.xlsx")
+ledger_2022 <- read_excel("ledger_data/2022.xls")
 
 ```
 
@@ -100,6 +102,15 @@ correctional_spending_2021 <- ledger_2021 %>%
   filter(vendor_name == "MARYLAND CORRECTIONAL")
 
 correctional_spending_2021 %>%
+  summarize(
+    sum(amt_paid)
+  )
+
+correctional_spending_2022 <- ledger_2022 %>%
+  clean_names %>%
+  filter(vendor_name == "MARYLAND CORRECTIONAL")
+
+correctional_spending_2022 %>%
   summarize(
     sum(amt_paid)
   )
