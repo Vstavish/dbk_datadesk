@@ -112,8 +112,65 @@ correctional_spending_2022 <- ledger_2022 %>%
 
 correctional_spending_2022 %>%
   summarize(
-    sum(amt_paid)
+    sum(grand_total_amt)
   )
+
+```
+#finding most common depts 2021-2022
+
+```{r}
+depts_2021 <- correctional_spending_2021 %>%
+  group_by(organization_name) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+depts_2022 <- correctional_spending_2022 %>%
+  group_by(organization_name) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+  
+```
+#Finding most common order titles
+
+```{r}
+items_2017 <- correctional_spending_2017 %>%
+  group_by(item_ld) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+items_2018 <- correctional_spending_2018 %>%
+  group_by(item_ld) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+items_2019 <- correctional_spending_2019 %>%
+  group_by(item_ld) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+items_2020 <- correctional_spending_2020 %>%
+  group_by(item_ld) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+items_2021 <- correctional_spending_2021 %>%
+  group_by(itm_desc) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+
+items_2022 <- correctional_spending_2022 %>%
+  group_by(item_ld) %>%
+  tally() %>%
+  mutate(percent = (n / sum(n) * 100)) %>%
+  arrange(desc(percent))
+  
 
 
 ```
