@@ -130,6 +130,26 @@ depts_2022 <- correctional_spending_2022 %>%
   tally() %>%
   mutate(percent = (n / sum(n) * 100)) %>%
   arrange(desc(percent))
+
+# now looking at most common depts orders overall 2021
+
+res_facilities2021 <- correctional_spending_2021 %>%
+  filter(organization_name == "VPSA-Res Facilities-Admin Svcs")
+
+vp_2021 <- correctional_spending_2021 %>%
+  filter(organization_name == "SVPAAP-Sr VP Academic Affairs & Provost")
+
+tech_2021 <- correctional_spending_2021 %>%
+  filter(organization_name == "VPA-FM-P&C-Technical Support")
+
+# most commons depts orders overall 2022
+
+cmns_2022 <- correctional_spending_2022 %>%
+  filter(organization_name == "CMNS-Chemistry & Biochemistry")
+
+sphl_2022 <- correctional_spending_2022 %>%
+  filter(organization_name == "SPHL-School of Public Health")
+
   
 ```
 #Finding most common order titles
@@ -171,6 +191,4 @@ items_2022 <- correctional_spending_2022 %>%
   mutate(percent = (n / sum(n) * 100)) %>%
   arrange(desc(percent))
   
-
-
 ```
