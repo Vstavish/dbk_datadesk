@@ -192,3 +192,12 @@ items_2022 <- correctional_spending_2022 %>%
   arrange(desc(percent))
   
 ```
+
+```{r}
+
+  
+
+
+
+
+```
