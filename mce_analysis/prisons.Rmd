@@ -192,12 +192,76 @@ items_2022 <- correctional_spending_2022 %>%
   arrange(desc(percent))
   
 ```
-
+# football spending
 ```{r}
+# 22 spending descending
+football_spending22 <- ledger_2022 %>%
+  clean_names %>%
+  filter(organization_name == "PRES-ICA-Football")%>%
+  arrange(desc(grand_total_amt))
 
-  
+# total amt spent
+football22_sum <-ledger_2022 %>%
+  clean_names %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+# 21 is wack
+football_spending21 <- ledger_2021 %>%
+  clean_names %>%
+  filter(organization_name == "PRES-ICA-Director's Office/Admin")%>%
+  arrange(desc(amt_paid))
+
+```
+
+#basketball spending (mens)
+```{r}
+#22 spending
+mbbal_spending22 <- ledger_2022 %>%
+  clean_names %>%
+  filter(organization_name == "PRES-ICA-Men's Basketball")%>%
+  arrange(desc(grand_total_amt))
 
 
+# total amt spent
+mbbal22_sum <-ledger_2022 %>%
+  clean_names %>%
+  summarize(
+    sum(grand_total_amt)
+  )
 
+```
+# womens sports question mark
+```{r}
+wsports_22 <- ledger_2022 %>%
+  clean_names %>%
+  filter(organization_name == "PRES-ICA-Women's Sports")%>%
+  arrange(desc(grand_total_amt))
+
+# total amt spent
+wsports22_sum <-ledger_2022 %>%
+  clean_names %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+
+```
+# other mens sports
+```{r}
+mensports_22 <- ledger_2022 %>%
+clean_names %>%
+  filter(organization_name == "PRES-ICA-Other Men's Sports")%>%
+  arrange(desc(grand_total_amt))
+
+# total amt spent
+mensports22_sum <-ledger_2022 %>%
+  clean_names %>%
+  summarize(
+    sum(grand_total_amt)
+  )
+
+(football22_sum - wsports22_sum)
 
 ```

@@ -1771,245 +1771,45 @@ Enterprises</h1>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbiNpbnN0YWxsLnBhY2thZ2VzKFwiZHBseXJcIilcbmxpYnJhcnkoamFuaXRvcilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHRpZHl2ZXJzZSlcbiNpbnN0YWxsLnBhY2thZ2VzKFwiZHBseXJcIilcbmxpYnJhcnkoamFuaXRvcilcbmxpYnJhcnkobHVicmlkYXRlKVxuI2luc3RhbGwucGFja2FnZXMoXCJjZW5zdXN4eVwiKVxubGlicmFyeShjZW5zdXN4eSlcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHBhcmFsbGVsKVxubGlicmFyeSh0aWN0b2MpXG5saWJyYXJ5KGZ1cnJyKVxubGlicmFyeShsZWFmbGV0KVxubGlicmFyeShsZWFmbGV0LmV4dHJhcylcbmxpYnJhcnkoc2YpXG4jaW5zdGFsbC5wYWNrYWdlcyhcInNwXCIpXG5saWJyYXJ5KHNwKVxuI2luc3RhbGwucGFja2FnZXMoXCJyZWFkeGxcIilcbmxpYnJhcnkocmVhZHhsKVxubGlicmFyeShkYXRhLnRhYmxlKVxubGlicmFyeShqc29ubGl0ZSlcbmxpYnJhcnkoZ2VvanNvbnNmKVxubGlicmFyeShnZW9qc29uaW8pXG4jaW5zdGFsbC5wYWNrYWdlcyhjKFwicmdkYWxcIiwgXCJ0aWR5Y2Vuc3VzXCIpKVxubGlicmFyeSh0aWR5Y2Vuc3VzKVxuI2luc3RhbGwucGFja2FnZXMoXCJmdXp6eWpvaW5cIilcbmxpYnJhcnkoZnV6enlqb2luKVxuI2luc3RhbGwucGFja2FnZXMoXCJzdHJpbmdkaXN0XCIpXG5saWJyYXJ5KHN0cmluZ2Rpc3QpXG4jaW5zdGFsbC5wYWNrYWdlcyhcInJtYXB6ZW5cIilcbmxpYnJhcnkocm1hcHplbilcbiNpbnN0YWxsLnBhY2thZ2VzKFwid3JpdGV4bFwiKVxubGlicmFyeSh3cml0ZXhsKVxubGlicmFyeShyZ2RhbClcbiNpbnN0YWxsLnBhY2thZ2VzKFwic3BhdGlhbEVjb1wiKVxubGlicmFyeShzcGF0aWFsRWNvKVxuI2luc3RhbGwucGFja2FnZXMoXCJyYXN0ZXJcIilcbmxpYnJhcnkocmFzdGVyKVxubGlicmFyeShkcGx5cilcblxuYGBgIn0= -->
 <pre class="r"><code>
 library(tidyverse)
 #install.packages(&quot;dplyr&quot;)
-library(janitor)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhqYW5pdG9y4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbkF0dGFjaGluZyBwYWNrYWdlOiDigJhqYW5pdG9y4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g4oCYcGFja2FnZTpzdGF0c+KAmTpcblxuICAgIGNoaXNxLnRlc3QsIGZpc2hlci50ZXN0XG4ifQ== -->
-<pre><code>Warning: package ‘janitor’ was built under R version 4.1.3
-Attaching package: ‘janitor’
-
-The following objects are masked from ‘package:stats’:
-
-    chisq.test, fisher.test</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsdWJyaWRhdGUpXG5gYGAifQ== -->
-<pre class="r"><code>library(lubridate)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhsdWJyaWRhdGXigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmGx1YnJpZGF0ZeKAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIGRhdGUsIGludGVyc2VjdCwgc2V0ZGlmZiwgdW5pb25cbiJ9 -->
-<pre><code>Warning: package ‘lubridate’ was built under R version 4.1.3
-Attaching package: ‘lubridate’
-
-The following objects are masked from ‘package:base’:
-
-    date, intersect, setdiff, union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJjZW5zdXN4eVwiKVxubGlicmFyeShjZW5zdXN4eSlcbmBgYCJ9 -->
-<pre class="r"><code>#install.packages(&quot;censusxy&quot;)
-library(censusxy)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhjZW5zdXN4eeKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zXG4ifQ== -->
-<pre><code>Warning: package ‘censusxy’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkocGFyYWxsZWwpXG5saWJyYXJ5KHRpY3RvYylcbmBgYCJ9 -->
-<pre class="r"><code>library(dplyr)
+library(janitor)
+library(lubridate)
+#install.packages(&quot;censusxy&quot;)
+library(censusxy)
+library(dplyr)
 library(parallel)
-library(tictoc)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWN0b2PigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuIn0= -->
-<pre><code>Warning: package ‘tictoc’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmdXJycilcbmBgYCJ9 -->
-<pre class="r"><code>library(furrr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhmdXJycuKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBmdXR1cmVcbldhcm5pbmc6IHBhY2thZ2Ug4oCYZnV0dXJl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbiJ9 -->
-<pre><code>Warning: package ‘furrr’ was built under R version 4.1.3Loading required package: future
-Warning: package ‘future’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsZWFmbGV0KVxuYGBgIn0= -->
-<pre class="r"><code>library(leaflet)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhsZWFmbGV04oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNSZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnaHRtbHdpZGdldHMnOlxuICBtZXRob2QgICAgICAgICAgIGZyb20gICAgICAgICBcbiAgcHJpbnQuaHRtbHdpZGdldCB0b29sczpyc3R1ZGlvXG4ifQ== -->
-<pre><code>Warning: package ‘leaflet’ was built under R version 4.1.3Registered S3 method overwritten by &#39;htmlwidgets&#39;:
-  method           from         
-  print.htmlwidget tools:rstudio</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsZWFmbGV0LmV4dHJhcylcbmBgYCJ9 -->
-<pre class="r"><code>library(leaflet.extras)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhsZWFmbGV0LmV4dHJhc+KAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zXG4ifQ== -->
-<pre><code>Warning: package ‘leaflet.extras’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzZilcbmBgYCJ9 -->
-<pre class="r"><code>library(sf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhzZuKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zTGlua2luZyB0byBHRU9TIDMuMTAuMiwgR0RBTCAzLjQuMSwgUFJPSiA3LjIuMTsgc2ZfdXNlX3MyKCkgaXMgVFJVRVxuIn0= -->
-<pre><code>Warning: package ‘sf’ was built under R version 4.1.3Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 7.2.1; sf_use_s2() is TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJzcFwiKVxubGlicmFyeShzcClcbmBgYCJ9 -->
-<pre class="r"><code>#install.packages(&quot;sp&quot;)
-library(sp)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhzcOKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zXG4ifQ== -->
-<pre><code>Warning: package ‘sp’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJyZWFkeGxcIilcbmxpYnJhcnkocmVhZHhsKVxuYGBgIn0= -->
-<pre class="r"><code>#install.packages(&quot;readxl&quot;)
-library(readxl)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhyZWFkeGzigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuIn0= -->
-<pre><code>Warning: package ‘readxl’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxuYGBgIn0= -->
-<pre class="r"><code>library(data.table)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhkYXRhLnRhYmxl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNkYXRhLnRhYmxlIDEuMTQuMiB1c2luZyA0IHRocmVhZHMgKHNlZSA/Z2V0RFR0aHJlYWRzKS4gIExhdGVzdCBuZXdzOiByLWRhdGF0YWJsZS5jb21cblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmGRhdGEudGFibGXigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTp0aWN0b2PigJk6XG5cbiAgICBzaGlmdFxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6bHVicmlkYXRl4oCZOlxuXG4gICAgaG91ciwgaXNvd2VlaywgbWRheSwgbWludXRlLCBtb250aCwgcXVhcnRlciwgc2Vjb25kLCB3ZGF5LCB3ZWVrLFxuICAgIHlkYXksIHllYXJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRwbHly4oCZOlxuXG4gICAgYmV0d2VlbiwgZmlyc3QsIGxhc3RcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpwdXJycuKAmTpcblxuICAgIHRyYW5zcG9zZVxuIn0= -->
-<pre><code>Warning: package ‘data.table’ was built under R version 4.1.3data.table 1.14.2 using 4 threads (see ?getDTthreads).  Latest news: r-datatable.com
-
-Attaching package: ‘data.table’
-
-The following object is masked from ‘package:tictoc’:
-
-    shift
-
-The following objects are masked from ‘package:lubridate’:
-
-    hour, isoweek, mday, minute, month, quarter, second, wday, week,
-    yday, year
-
-The following objects are masked from ‘package:dplyr’:
-
-    between, first, last
-
-The following object is masked from ‘package:purrr’:
-
-    transpose</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShqc29ubGl0ZSlcbmBgYCJ9 -->
-<pre class="r"><code>library(jsonlite)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhqc29ubGl0ZeKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYanNvbmxpdGXigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpwdXJycuKAmTpcblxuICAgIGZsYXR0ZW5cbiJ9 -->
-<pre><code>Warning: package ‘jsonlite’ was built under R version 4.1.3
-Attaching package: ‘jsonlite’
-
-The following object is masked from ‘package:purrr’:
-
-    flatten</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZW9qc29uc2YpXG5gYGAifQ== -->
-<pre class="r"><code>library(geojsonsf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhnZW9qc29uc2bigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuIn0= -->
-<pre><code>Warning: package ‘geojsonsf’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZW9qc29uaW8pXG5gYGAifQ== -->
-<pre class="r"><code>library(geojsonio)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhnZW9qc29uaW/igJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1JlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdnZW9qc29uJzpcbiAgbWV0aG9kICAgICAgICBmcm9tICAgICBcbiAgcHJpbnQuZ2VvanNvbiBnZW9qc29uc2ZcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmGdlb2pzb25pb+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmdlb2pzb25zZuKAmTpcblxuICAgIGdlb2pzb25fc2ZcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpqc29ubGl0ZeKAmTpcblxuICAgIHZhbGlkYXRlXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6YmFzZeKAmTpcblxuICAgIHByZXR0eVxuIn0= -->
-<pre><code>Warning: package ‘geojsonio’ was built under R version 4.1.3Registered S3 method overwritten by &#39;geojson&#39;:
-  method        from     
-  print.geojson geojsonsf
-
-Attaching package: ‘geojsonio’
-
-The following object is masked from ‘package:geojsonsf’:
-
-    geojson_sf
-
-The following object is masked from ‘package:jsonlite’:
-
-    validate
-
-The following object is masked from ‘package:base’:
-
-    pretty</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoYyhcInJnZGFsXCIsIFwidGlkeWNlbnN1c1wiKSlcbmxpYnJhcnkodGlkeWNlbnN1cylcbmBgYCJ9 -->
-<pre class="r"><code>#install.packages(c(&quot;rgdal&quot;, &quot;tidycensus&quot;))
-library(tidycensus)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh0aWR5Y2Vuc3Vz4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbiJ9 -->
-<pre><code>Warning: package ‘tidycensus’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJmdXp6eWpvaW5cIilcbmxpYnJhcnkoZnV6enlqb2luKVxuYGBgIn0= -->
-<pre class="r"><code>#install.packages(&quot;fuzzyjoin&quot;)
-library(fuzzyjoin)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhmdXp6eWpvaW7igJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuIn0= -->
-<pre><code>Warning: package ‘fuzzyjoin’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJzdHJpbmdkaXN0XCIpXG5saWJyYXJ5KHN0cmluZ2Rpc3QpXG5gYGAifQ== -->
-<pre class="r"><code>#install.packages(&quot;stringdist&quot;)
-library(stringdist)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYc3RyaW5nZGlzdOKAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnRpZHly4oCZOlxuXG4gICAgZXh0cmFjdFxuIn0= -->
-<pre><code>
-Attaching package: ‘stringdist’
-
-The following object is masked from ‘package:tidyr’:
-
-    extract</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJybWFwemVuXCIpXG5saWJyYXJ5KHJtYXB6ZW4pXG5gYGAifQ== -->
-<pre class="r"><code>#install.packages(&quot;rmapzen&quot;)
-library(rmapzen)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhybWFwemVu4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbiJ9 -->
-<pre><code>Warning: package ‘rmapzen’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJ3cml0ZXhsXCIpXG5saWJyYXJ5KHdyaXRleGwpXG5gYGAifQ== -->
-<pre class="r"><code>#install.packages(&quot;writexl&quot;)
-library(writexl)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJh3cml0ZXhs4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbiJ9 -->
-<pre><code>Warning: package ‘writexl’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZ2RhbClcbmBgYCJ9 -->
-<pre class="r"><code>library(rgdal)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhyZ2RhbOKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuMS4zUGxlYXNlIG5vdGUgdGhhdCByZ2RhbCB3aWxsIGJlIHJldGlyZWQgYnkgdGhlIGVuZCBvZiAyMDIzLFxucGxhbiB0cmFuc2l0aW9uIHRvIHNmL3N0YXJzL3RlcnJhIGZ1bmN0aW9ucyB1c2luZyBHREFMIGFuZCBQUk9KXG5hdCB5b3VyIGVhcmxpZXN0IGNvbnZlbmllbmNlLlxuXG5yZ2RhbDogdmVyc2lvbjogMS41LTMyLCAoU1ZOIHJldmlzaW9uIDExNzYpXG5HZW9zcGF0aWFsIERhdGEgQWJzdHJhY3Rpb24gTGlicmFyeSBleHRlbnNpb25zIHRvIFIgc3VjY2Vzc2Z1bGx5IGxvYWRlZFxuTG9hZGVkIEdEQUwgcnVudGltZTogR0RBTCAzLjQuMSwgcmVsZWFzZWQgMjAyMS8xMi8yN1xuUGF0aCB0byBHREFMIHNoYXJlZCBmaWxlczogQzovVXNlcnMvVnN0YXYvT25lRHJpdmUvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvNC4xL3JnZGFsL2dkYWxcbkdEQUwgYmluYXJ5IGJ1aWx0IHdpdGggR0VPUzogVFJVRSBcbkxvYWRlZCBQUk9KIHJ1bnRpbWU6IFJlbC4gNy4yLjEsIEphbnVhcnkgMXN0LCAyMDIxLCBbUEpfVkVSU0lPTjogNzIxXVxuUGF0aCB0byBQUk9KIHNoYXJlZCBmaWxlczogQzovVXNlcnMvVnN0YXYvT25lRHJpdmUvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvNC4xL3JnZGFsL3Byb2pcblBST0ogQ0ROIGVuYWJsZWQ6IEZBTFNFXG5MaW5raW5nIHRvIHNwIHZlcnNpb246MS41LTBcblRvIG11dGUgd2FybmluZ3Mgb2YgcG9zc2libGUgR0RBTC9PU1IgZXhwb3J0VG9Qcm9qNCgpIGRlZ3JhZGF0aW9uLFxudXNlIG9wdGlvbnMoXCJyZ2RhbF9zaG93X2V4cG9ydFRvUHJvajRfd2FybmluZ3NcIj1cIm5vbmVcIikgYmVmb3JlIGxvYWRpbmcgc3Agb3IgcmdkYWwuXG4ifQ== -->
-<pre><code>Warning: package ‘rgdal’ was built under R version 4.1.3Please note that rgdal will be retired by the end of 2023,
-plan transition to sf/stars/terra functions using GDAL and PROJ
-at your earliest convenience.
-
-rgdal: version: 1.5-32, (SVN revision 1176)
-Geospatial Data Abstraction Library extensions to R successfully loaded
-Loaded GDAL runtime: GDAL 3.4.1, released 2021/12/27
-Path to GDAL shared files: C:/Users/Vstav/OneDrive/Documents/R/win-library/4.1/rgdal/gdal
-GDAL binary built with GEOS: TRUE 
-Loaded PROJ runtime: Rel. 7.2.1, January 1st, 2021, [PJ_VERSION: 721]
-Path to PROJ shared files: C:/Users/Vstav/OneDrive/Documents/R/win-library/4.1/rgdal/proj
-PROJ CDN enabled: FALSE
-Linking to sp version:1.5-0
-To mute warnings of possible GDAL/OSR exportToProj4() degradation,
-use options(&quot;rgdal_show_exportToProj4_warnings&quot;=&quot;none&quot;) before loading sp or rgdal.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJzcGF0aWFsRWNvXCIpXG5saWJyYXJ5KHNwYXRpYWxFY28pXG5gYGAifQ== -->
-<pre class="r"><code>#install.packages(&quot;spatialEco&quot;)
-library(spatialEco)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYc3BhdGlhbEVjb+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRhdGEudGFibGXigJk6XG5cbiAgICBzaGlmdFxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnRpY3RvY+KAmTpcblxuICAgIHNoaWZ0XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZHBseXLigJk6XG5cbiAgICBjb21iaW5lXG4ifQ== -->
-<pre><code>
-Attaching package: ‘spatialEco’
-
-The following object is masked from ‘package:data.table’:
-
-    shift
-
-The following object is masked from ‘package:tictoc’:
-
-    shift
-
-The following object is masked from ‘package:dplyr’:
-
-    combine</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwucGFja2FnZXMoXCJyYXN0ZXJcIilcbmxpYnJhcnkocmFzdGVyKVxuYGBgIn0= -->
-<pre class="r"><code>#install.packages(&quot;raster&quot;)
-library(raster)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhyYXN0ZXLigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuM1xuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmHJhc3RlcuKAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRwbHly4oCZOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
-<pre><code>Warning: package ‘raster’ was built under R version 4.1.3
-Attaching package: ‘raster’
-
-The following object is masked from ‘package:dplyr’:
-
-    select</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcblxuYGBgIn0= -->
-<pre class="r"><code>library(dplyr)
+library(tictoc)
+library(furrr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+#install.packages(&quot;sp&quot;)
+library(sp)
+#install.packages(&quot;readxl&quot;)
+library(readxl)
+library(data.table)
+library(jsonlite)
+library(geojsonsf)
+library(geojsonio)
+#install.packages(c(&quot;rgdal&quot;, &quot;tidycensus&quot;))
+library(tidycensus)
+#install.packages(&quot;fuzzyjoin&quot;)
+library(fuzzyjoin)
+#install.packages(&quot;stringdist&quot;)
+library(stringdist)
+#install.packages(&quot;rmapzen&quot;)
+library(rmapzen)
+#install.packages(&quot;writexl&quot;)
+library(writexl)
+library(rgdal)
+#install.packages(&quot;spatialEco&quot;)
+library(spatialEco)
+#install.packages(&quot;raster&quot;)
+library(raster)
+library(dplyr)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -2227,11 +2027,88 @@ items_2022 &lt;- correctional_spending_2022 %&gt;%
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<div id="football-spending" class="section level1">
+<h1>football spending</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9vdGJhbGxfc3BlbmRpbmcyMSA8LSBsZWRnZXJfMjAyMSAlPiVcbiAgY2xlYW5fbmFtZXMgJT4lXG4gIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSBcIlBSRVMtSUNBLURpcmVjdG9yJ3MgT2ZmaWNlL0FkbWluXCIpJT4lXG4gIGFycmFuZ2UoZGVzYyhncmFuZF90b3RhbF9hbXQpKVxuXG5gYGAifQ== -->
+<pre class="r"><code>football_spending21 &lt;- ledger_2021 %&gt;%
+  clean_names %&gt;%
+  filter(organization_name == &quot;PRES-ICA-Director&#39;s Office/Admin&quot;)%&gt;%
+  arrange(desc(grand_total_amt))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gYGFycmFuZ2UoKWA6XG4hIFByb2JsZW0gd2l0aCB0aGUgaW1wbGljaXQgYHRyYW5zbXV0ZSgpYCBzdGVwLlxueCBQcm9ibGVtIHdoaWxlIGNvbXB1dGluZyBgLi4xID0gZ3JhbmRfdG90YWxfYW10YC5cbkNhdXNlZCBieSBlcnJvcjpcbiEgb2JqZWN0ICdncmFuZF90b3RhbF9hbXQnIG5vdCBmb3VuZFxuQmFja3RyYWNlOlxuICAxLiAuLi4gJT4lIGFycmFuZ2UoZGVzYyhncmFuZF90b3RhbF9hbXQpKVxuIDExLiBiYXNlOjouaGFuZGxlU2ltcGxlRXJyb3IoLi4uKVxuIDEyLiBkcGx5ciBoKHNpbXBsZUVycm9yKG1zZywgY2FsbCkpXG4ifQ== -->
+<pre><code>Error in `arrange()`:
+! Problem with the implicit `transmute()` step.
+x Problem while computing `..1 = grand_total_amt`.
+Caused by error:
+! object &#39;grand_total_amt&#39; not found
+Backtrace:
+  1. ... %&gt;% arrange(desc(grand_total_amt))
+ 11. base::.handleSimpleError(...)
+ 12. dplyr h(simpleError(msg, call))</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>#basketball spending (mens)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIzIyIHNwZW5kaW5nXG5tYmJhbF9zcGVuZGluZzIyIDwtIGxlZGdlcl8yMDIyICU+JVxuICBjbGVhbl9uYW1lcyAlPiVcbiAgZmlsdGVyKG9yZ2FuaXphdGlvbl9uYW1lID09IFwiUFJFUy1JQ0EtTWVuJ3MgQmFza2V0YmFsbFwiKSU+JVxuICBhcnJhbmdlKGRlc2MoZ3JhbmRfdG90YWxfYW10KSlcblxuXG4jIHRvdGFsIGFtdCBzcGVudFxubWJiYWwyMl9zdW0gPC1sZWRnZXJfMjAyMiAlPiVcbiAgY2xlYW5fbmFtZXMgJT4lXG4gIHN1bW1hcml6ZShcbiAgICBzdW0oZ3JhbmRfdG90YWxfYW10KVxuICApXG5cbmBgYCJ9 -->
+<pre class="r"><code>#22 spending
+mbbal_spending22 &lt;- ledger_2022 %&gt;%
+  clean_names %&gt;%
+  filter(organization_name == &quot;PRES-ICA-Men&#39;s Basketball&quot;)%&gt;%
+  arrange(desc(grand_total_amt))
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxlZ2RlciBEYXRhIC0tIE1hcnlsYW5kIENvcnJlY3Rpb25hbCBFbnRlcnByaXNlcyINCmJ5OiBTaHJleWEgVnV0dGFsdXJ1DQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCg0KbGlicmFyeSh0aWR5dmVyc2UpDQojaW5zdGFsbC5wYWNrYWdlcygiZHBseXIiKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpDQojaW5zdGFsbC5wYWNrYWdlcygiY2Vuc3VzeHkiKQ0KbGlicmFyeShjZW5zdXN4eSkNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHBhcmFsbGVsKQ0KbGlicmFyeSh0aWN0b2MpDQpsaWJyYXJ5KGZ1cnJyKQ0KbGlicmFyeShsZWFmbGV0KQ0KbGlicmFyeShsZWFmbGV0LmV4dHJhcykNCmxpYnJhcnkoc2YpDQojaW5zdGFsbC5wYWNrYWdlcygic3AiKQ0KbGlicmFyeShzcCkNCiNpbnN0YWxsLnBhY2thZ2VzKCJyZWFkeGwiKQ0KbGlicmFyeShyZWFkeGwpDQpsaWJyYXJ5KGRhdGEudGFibGUpDQpsaWJyYXJ5KGpzb25saXRlKQ0KbGlicmFyeShnZW9qc29uc2YpDQpsaWJyYXJ5KGdlb2pzb25pbykNCiNpbnN0YWxsLnBhY2thZ2VzKGMoInJnZGFsIiwgInRpZHljZW5zdXMiKSkNCmxpYnJhcnkodGlkeWNlbnN1cykNCiNpbnN0YWxsLnBhY2thZ2VzKCJmdXp6eWpvaW4iKQ0KbGlicmFyeShmdXp6eWpvaW4pDQojaW5zdGFsbC5wYWNrYWdlcygic3RyaW5nZGlzdCIpDQpsaWJyYXJ5KHN0cmluZ2Rpc3QpDQojaW5zdGFsbC5wYWNrYWdlcygicm1hcHplbiIpDQpsaWJyYXJ5KHJtYXB6ZW4pDQojaW5zdGFsbC5wYWNrYWdlcygid3JpdGV4bCIpDQpsaWJyYXJ5KHdyaXRleGwpDQpsaWJyYXJ5KHJnZGFsKQ0KI2luc3RhbGwucGFja2FnZXMoInNwYXRpYWxFY28iKQ0KbGlicmFyeShzcGF0aWFsRWNvKQ0KI2luc3RhbGwucGFja2FnZXMoInJhc3RlciIpDQpsaWJyYXJ5KHJhc3RlcikNCmxpYnJhcnkoZHBseXIpDQoNCmBgYA0KDQpSZWFkaW5nIGluIGRhdGENCmBgYHtyfQ0KDQpsZWRnZXJfMjAxNyA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE3LnhscyIpDQpsZWRnZXJfMjAxOCA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE4LnhscyIpDQpsZWRnZXJfMjAxOSA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE5LnhscyIpDQpsZWRnZXJfMjAyMCA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDIwLnhscyIpDQpsZWRnZXJfMjAyMSA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDIxLnhsc3giKQ0KbGVkZ2VyXzIwMjIgPC0gcmVhZF9leGNlbCgibGVkZ2VyX2RhdGEvMjAyMi54bHMiKQ0KDQpgYGANCg0KQW5hbHlzaXMhDQpgYGB7cn0NCiMjIyBGaWx0ZXJpbmcgZm9yIE1hcnlsYW5kIGNvcnJlY3Rpb25hbCBlbnRlcnByaXNlcyBpbiBlYWNoIHllYXINCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE3IDwtIGxlZGdlcl8yMDE3ICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxNyAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTggPC0gbGVkZ2VyXzIwMTggJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIodmVuZG9yX25hbWUgPT0gIk1BUllMQU5EIENPUlJFQ1RJT05BTCIpDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE4ICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGdyYW5kX3RvdGFsX2FtdCkNCiAgKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxOSA8LSBsZWRnZXJfMjAxOSAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIGZpbHRlcih2ZW5kb3JfbmFtZSA9PSAiTUFSWUxBTkQgQ09SUkVDVElPTkFMIikNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTkgJT4lDQogIHN1bW1hcml6ZSgNCiAgICBzdW0oZ3JhbmRfdG90YWxfYW10KQ0KICApDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIwIDwtIGxlZGdlcl8yMDIwICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMCAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMjEgPC0gbGVkZ2VyXzIwMjEgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIodmVuZG9yX25hbWUgPT0gIk1BUllMQU5EIENPUlJFQ1RJT05BTCIpDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGFtdF9wYWlkKQ0KICApDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyIDwtIGxlZGdlcl8yMDIyICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KYGBgDQojZmluZGluZyBtb3N0IGNvbW1vbiBkZXB0cyAyMDIxLTIwMjINCg0KYGBge3J9DQpkZXB0c18yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBncm91cF9ieShvcmdhbml6YXRpb25fbmFtZSkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQpkZXB0c18yMDIyIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyICU+JQ0KICBncm91cF9ieShvcmdhbml6YXRpb25fbmFtZSkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQojIG5vdyBsb29raW5nIGF0IG1vc3QgY29tbW9uIGRlcHRzIG9yZGVycyBvdmVyYWxsIDIwMjENCg0KcmVzX2ZhY2lsaXRpZXMyMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlZQU0EtUmVzIEZhY2lsaXRpZXMtQWRtaW4gU3ZjcyIpDQoNCnZwXzIwMjEgPC0gY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMjEgJT4lDQogIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSAiU1ZQQUFQLVNyIFZQIEFjYWRlbWljIEFmZmFpcnMgJiBQcm92b3N0IikNCg0KdGVjaF8yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlZQQS1GTS1QJkMtVGVjaG5pY2FsIFN1cHBvcnQiKQ0KDQojIG1vc3QgY29tbW9ucyBkZXB0cyBvcmRlcnMgb3ZlcmFsbCAyMDIyDQoNCmNtbnNfMjAyMiA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgZmlsdGVyKG9yZ2FuaXphdGlvbl9uYW1lID09ICJDTU5TLUNoZW1pc3RyeSAmIEJpb2NoZW1pc3RyeSIpDQoNCnNwaGxfMjAyMiA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgZmlsdGVyKG9yZ2FuaXphdGlvbl9uYW1lID09ICJTUEhMLVNjaG9vbCBvZiBQdWJsaWMgSGVhbHRoIikNCg0KICANCmBgYA0KI0ZpbmRpbmcgbW9zdCBjb21tb24gb3JkZXIgdGl0bGVzDQoNCmBgYHtyfQ0KaXRlbXNfMjAxNyA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxNyAlPiUNCiAgZ3JvdXBfYnkoaXRlbV9sZCkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDE4IDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE4ICU+JQ0KICBncm91cF9ieShpdGVtX2xkKSAlPiUNCiAgdGFsbHkoKSAlPiUNCiAgbXV0YXRlKHBlcmNlbnQgPSAobiAvIHN1bShuKSAqIDEwMCkpICU+JQ0KICBhcnJhbmdlKGRlc2MocGVyY2VudCkpDQoNCml0ZW1zXzIwMTkgPC0gY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTkgJT4lDQogIGdyb3VwX2J5KGl0ZW1fbGQpICU+JQ0KICB0YWxseSgpICU+JQ0KICBtdXRhdGUocGVyY2VudCA9IChuIC8gc3VtKG4pICogMTAwKSkgJT4lDQogIGFycmFuZ2UoZGVzYyhwZXJjZW50KSkNCg0KaXRlbXNfMjAyMCA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMCAlPiUNCiAgZ3JvdXBfYnkoaXRlbV9sZCkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBncm91cF9ieShpdG1fZGVzYykgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDIyIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyICU+JQ0KICBncm91cF9ieShpdGVtX2xkKSAlPiUNCiAgdGFsbHkoKSAlPiUNCiAgbXV0YXRlKHBlcmNlbnQgPSAobiAvIHN1bShuKSAqIDEwMCkpICU+JQ0KICBhcnJhbmdlKGRlc2MocGVyY2VudCkpDQogIA0KYGBgDQoNCmBgYHtyfQ0KDQogIA0KDQoNCg0KDQpgYGA=</div>
+
+# total amt spent
+mbbal22_sum &lt;-ledger_2022 %&gt;%
+  clean_names %&gt;%
+  summarize(
+    sum(grand_total_amt)
+  )
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="womens-sports-question-mark" class="section level1">
+<h1>womens sports question mark</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3Nwb3J0c18yMiA8LSBsZWRnZXJfMjAyMiAlPiVcbiAgY2xlYW5fbmFtZXMgJT4lXG4gIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSBcIlBSRVMtSUNBLVdvbWVuJ3MgU3BvcnRzXCIpJT4lXG4gIGFycmFuZ2UoZGVzYyhncmFuZF90b3RhbF9hbXQpKVxuXG4jIHRvdGFsIGFtdCBzcGVudFxud3Nwb3J0czIyX3N1bSA8LWxlZGdlcl8yMDIyICU+JVxuICBjbGVhbl9uYW1lcyAlPiVcbiAgc3VtbWFyaXplKFxuICAgIHN1bShncmFuZF90b3RhbF9hbXQpXG4gIClcblxuXG5gYGAifQ== -->
+<pre class="r"><code>wsports_22 &lt;- ledger_2022 %&gt;%
+  clean_names %&gt;%
+  filter(organization_name == &quot;PRES-ICA-Women&#39;s Sports&quot;)%&gt;%
+  arrange(desc(grand_total_amt))
+
+# total amt spent
+wsports22_sum &lt;-ledger_2022 %&gt;%
+  clean_names %&gt;%
+  summarize(
+    sum(grand_total_amt)
+  )
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="other-mens-sports" class="section level1">
+<h1>other mens sports</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MSwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMSB4IDFdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQmwxUXl3NkNNQkRjOHRCSTRpUFJqOUNESkdMMEIvUURqQ2R1cEFJaXNiU2tsT2pYcXd0cEUyd3Z1enZabVozcDlSenZnemdBQUJjOFFzRDFzWVhSNmJLTERoR0E1K0JFd0lOSlY5KzR0ZXdCZ0ptdSt2MHQrcHhXZVlQTllnQ3VtclphRjVMeUxGRkNVWmJRU20wczRrU0tWMmpJVTMyQjJPb3BvNDJ0SG1SVTBmQXVrWXZUeDZLTVJhMUt3WkhrZFA1OWkweWtCY3hiM3JuSXR1bWo1Yy90c1Rzd3lEdHdacnQwdmxySzExS2puQmNsejQxM1JtODUwOE1NMC9aaHcxcVdYSmtraURaaC8wVUdTUVV6U0o4TlBqOEdqVTFzdHdFQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sum(grand_total_amt)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"0"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxlZ2RlciBEYXRhIC0tIE1hcnlsYW5kIENvcnJlY3Rpb25hbCBFbnRlcnByaXNlcyINCmJ5OiBTaHJleWEgVnV0dGFsdXJ1DQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCg0KbGlicmFyeSh0aWR5dmVyc2UpDQojaW5zdGFsbC5wYWNrYWdlcygiZHBseXIiKQ0KbGlicmFyeShqYW5pdG9yKQ0KbGlicmFyeShsdWJyaWRhdGUpDQojaW5zdGFsbC5wYWNrYWdlcygiY2Vuc3VzeHkiKQ0KbGlicmFyeShjZW5zdXN4eSkNCmxpYnJhcnkoZHBseXIpDQpsaWJyYXJ5KHBhcmFsbGVsKQ0KbGlicmFyeSh0aWN0b2MpDQpsaWJyYXJ5KGZ1cnJyKQ0KbGlicmFyeShsZWFmbGV0KQ0KbGlicmFyeShsZWFmbGV0LmV4dHJhcykNCmxpYnJhcnkoc2YpDQojaW5zdGFsbC5wYWNrYWdlcygic3AiKQ0KbGlicmFyeShzcCkNCiNpbnN0YWxsLnBhY2thZ2VzKCJyZWFkeGwiKQ0KbGlicmFyeShyZWFkeGwpDQpsaWJyYXJ5KGRhdGEudGFibGUpDQpsaWJyYXJ5KGpzb25saXRlKQ0KbGlicmFyeShnZW9qc29uc2YpDQpsaWJyYXJ5KGdlb2pzb25pbykNCiNpbnN0YWxsLnBhY2thZ2VzKGMoInJnZGFsIiwgInRpZHljZW5zdXMiKSkNCmxpYnJhcnkodGlkeWNlbnN1cykNCiNpbnN0YWxsLnBhY2thZ2VzKCJmdXp6eWpvaW4iKQ0KbGlicmFyeShmdXp6eWpvaW4pDQojaW5zdGFsbC5wYWNrYWdlcygic3RyaW5nZGlzdCIpDQpsaWJyYXJ5KHN0cmluZ2Rpc3QpDQojaW5zdGFsbC5wYWNrYWdlcygicm1hcHplbiIpDQpsaWJyYXJ5KHJtYXB6ZW4pDQojaW5zdGFsbC5wYWNrYWdlcygid3JpdGV4bCIpDQpsaWJyYXJ5KHdyaXRleGwpDQpsaWJyYXJ5KHJnZGFsKQ0KI2luc3RhbGwucGFja2FnZXMoInNwYXRpYWxFY28iKQ0KbGlicmFyeShzcGF0aWFsRWNvKQ0KI2luc3RhbGwucGFja2FnZXMoInJhc3RlciIpDQpsaWJyYXJ5KHJhc3RlcikNCmxpYnJhcnkoZHBseXIpDQoNCmBgYA0KDQpSZWFkaW5nIGluIGRhdGENCmBgYHtyfQ0KDQpsZWRnZXJfMjAxNyA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE3LnhscyIpDQpsZWRnZXJfMjAxOCA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE4LnhscyIpDQpsZWRnZXJfMjAxOSA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDE5LnhscyIpDQpsZWRnZXJfMjAyMCA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDIwLnhscyIpDQpsZWRnZXJfMjAyMSA8LSByZWFkX2V4Y2VsKCJsZWRnZXJfZGF0YS8yMDIxLnhsc3giKQ0KbGVkZ2VyXzIwMjIgPC0gcmVhZF9leGNlbCgibGVkZ2VyX2RhdGEvMjAyMi54bHMiKQ0KDQpgYGANCg0KQW5hbHlzaXMhDQpgYGB7cn0NCiMjIyBGaWx0ZXJpbmcgZm9yIE1hcnlsYW5kIGNvcnJlY3Rpb25hbCBlbnRlcnByaXNlcyBpbiBlYWNoIHllYXINCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE3IDwtIGxlZGdlcl8yMDE3ICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxNyAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTggPC0gbGVkZ2VyXzIwMTggJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIodmVuZG9yX25hbWUgPT0gIk1BUllMQU5EIENPUlJFQ1RJT05BTCIpDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE4ICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGdyYW5kX3RvdGFsX2FtdCkNCiAgKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxOSA8LSBsZWRnZXJfMjAxOSAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIGZpbHRlcih2ZW5kb3JfbmFtZSA9PSAiTUFSWUxBTkQgQ09SUkVDVElPTkFMIikNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTkgJT4lDQogIHN1bW1hcml6ZSgNCiAgICBzdW0oZ3JhbmRfdG90YWxfYW10KQ0KICApDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIwIDwtIGxlZGdlcl8yMDIwICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMCAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMjEgPC0gbGVkZ2VyXzIwMjEgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIodmVuZG9yX25hbWUgPT0gIk1BUllMQU5EIENPUlJFQ1RJT05BTCIpDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGFtdF9wYWlkKQ0KICApDQoNCmNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyIDwtIGxlZGdlcl8yMDIyICU+JQ0KICBjbGVhbl9uYW1lcyAlPiUNCiAgZmlsdGVyKHZlbmRvcl9uYW1lID09ICJNQVJZTEFORCBDT1JSRUNUSU9OQUwiKQ0KDQpjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgc3VtbWFyaXplKA0KICAgIHN1bShncmFuZF90b3RhbF9hbXQpDQogICkNCg0KYGBgDQojZmluZGluZyBtb3N0IGNvbW1vbiBkZXB0cyAyMDIxLTIwMjINCg0KYGBge3J9DQpkZXB0c18yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBncm91cF9ieShvcmdhbml6YXRpb25fbmFtZSkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQpkZXB0c18yMDIyIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyICU+JQ0KICBncm91cF9ieShvcmdhbml6YXRpb25fbmFtZSkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQojIG5vdyBsb29raW5nIGF0IG1vc3QgY29tbW9uIGRlcHRzIG9yZGVycyBvdmVyYWxsIDIwMjENCg0KcmVzX2ZhY2lsaXRpZXMyMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlZQU0EtUmVzIEZhY2lsaXRpZXMtQWRtaW4gU3ZjcyIpDQoNCnZwXzIwMjEgPC0gY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMjEgJT4lDQogIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSAiU1ZQQUFQLVNyIFZQIEFjYWRlbWljIEFmZmFpcnMgJiBQcm92b3N0IikNCg0KdGVjaF8yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlZQQS1GTS1QJkMtVGVjaG5pY2FsIFN1cHBvcnQiKQ0KDQojIG1vc3QgY29tbW9ucyBkZXB0cyBvcmRlcnMgb3ZlcmFsbCAyMDIyDQoNCmNtbnNfMjAyMiA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgZmlsdGVyKG9yZ2FuaXphdGlvbl9uYW1lID09ICJDTU5TLUNoZW1pc3RyeSAmIEJpb2NoZW1pc3RyeSIpDQoNCnNwaGxfMjAyMiA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMiAlPiUNCiAgZmlsdGVyKG9yZ2FuaXphdGlvbl9uYW1lID09ICJTUEhMLVNjaG9vbCBvZiBQdWJsaWMgSGVhbHRoIikNCg0KICANCmBgYA0KI0ZpbmRpbmcgbW9zdCBjb21tb24gb3JkZXIgdGl0bGVzDQoNCmBgYHtyfQ0KaXRlbXNfMjAxNyA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAxNyAlPiUNCiAgZ3JvdXBfYnkoaXRlbV9sZCkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDE4IDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDE4ICU+JQ0KICBncm91cF9ieShpdGVtX2xkKSAlPiUNCiAgdGFsbHkoKSAlPiUNCiAgbXV0YXRlKHBlcmNlbnQgPSAobiAvIHN1bShuKSAqIDEwMCkpICU+JQ0KICBhcnJhbmdlKGRlc2MocGVyY2VudCkpDQoNCml0ZW1zXzIwMTkgPC0gY29ycmVjdGlvbmFsX3NwZW5kaW5nXzIwMTkgJT4lDQogIGdyb3VwX2J5KGl0ZW1fbGQpICU+JQ0KICB0YWxseSgpICU+JQ0KICBtdXRhdGUocGVyY2VudCA9IChuIC8gc3VtKG4pICogMTAwKSkgJT4lDQogIGFycmFuZ2UoZGVzYyhwZXJjZW50KSkNCg0KaXRlbXNfMjAyMCA8LSBjb3JyZWN0aW9uYWxfc3BlbmRpbmdfMjAyMCAlPiUNCiAgZ3JvdXBfYnkoaXRlbV9sZCkgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDIxIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIxICU+JQ0KICBncm91cF9ieShpdG1fZGVzYykgJT4lDQogIHRhbGx5KCkgJT4lDQogIG11dGF0ZShwZXJjZW50ID0gKG4gLyBzdW0obikgKiAxMDApKSAlPiUNCiAgYXJyYW5nZShkZXNjKHBlcmNlbnQpKQ0KDQppdGVtc18yMDIyIDwtIGNvcnJlY3Rpb25hbF9zcGVuZGluZ18yMDIyICU+JQ0KICBncm91cF9ieShpdGVtX2xkKSAlPiUNCiAgdGFsbHkoKSAlPiUNCiAgbXV0YXRlKHBlcmNlbnQgPSAobiAvIHN1bShuKSAqIDEwMCkpICU+JQ0KICBhcnJhbmdlKGRlc2MocGVyY2VudCkpDQogIA0KYGBgDQojIGZvb3RiYWxsIHNwZW5kaW5nDQpgYGB7cn0NCiMgMjIgc3BlbmRpbmcgZGVzY2VuZGluZw0KZm9vdGJhbGxfc3BlbmRpbmcyMiA8LSBsZWRnZXJfMjAyMiAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSAiUFJFUy1JQ0EtRm9vdGJhbGwiKSU+JQ0KICBhcnJhbmdlKGRlc2MoZ3JhbmRfdG90YWxfYW10KSkNCg0KIyB0b3RhbCBhbXQgc3BlbnQNCmZvb3RiYWxsMjJfc3VtIDwtbGVkZ2VyXzIwMjIgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGdyYW5kX3RvdGFsX2FtdCkNCiAgKQ0KDQojIDIxIGlzIHdhY2sNCmZvb3RiYWxsX3NwZW5kaW5nMjEgPC0gbGVkZ2VyXzIwMjEgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlBSRVMtSUNBLURpcmVjdG9yJ3MgT2ZmaWNlL0FkbWluIiklPiUNCiAgYXJyYW5nZShkZXNjKGFtdF9wYWlkKSkNCg0KYGBgDQoNCiNiYXNrZXRiYWxsIHNwZW5kaW5nIChtZW5zKQ0KYGBge3J9DQojMjIgc3BlbmRpbmcNCm1iYmFsX3NwZW5kaW5nMjIgPC0gbGVkZ2VyXzIwMjIgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlBSRVMtSUNBLU1lbidzIEJhc2tldGJhbGwiKSU+JQ0KICBhcnJhbmdlKGRlc2MoZ3JhbmRfdG90YWxfYW10KSkNCg0KDQojIHRvdGFsIGFtdCBzcGVudA0KbWJiYWwyMl9zdW0gPC1sZWRnZXJfMjAyMiAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIHN1bW1hcml6ZSgNCiAgICBzdW0oZ3JhbmRfdG90YWxfYW10KQ0KICApDQoNCmBgYA0KIyB3b21lbnMgc3BvcnRzIHF1ZXN0aW9uIG1hcmsNCmBgYHtyfQ0Kd3Nwb3J0c18yMiA8LSBsZWRnZXJfMjAyMiAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIGZpbHRlcihvcmdhbml6YXRpb25fbmFtZSA9PSAiUFJFUy1JQ0EtV29tZW4ncyBTcG9ydHMiKSU+JQ0KICBhcnJhbmdlKGRlc2MoZ3JhbmRfdG90YWxfYW10KSkNCg0KIyB0b3RhbCBhbXQgc3BlbnQNCndzcG9ydHMyMl9zdW0gPC1sZWRnZXJfMjAyMiAlPiUNCiAgY2xlYW5fbmFtZXMgJT4lDQogIHN1bW1hcml6ZSgNCiAgICBzdW0oZ3JhbmRfdG90YWxfYW10KQ0KICApDQoNCg0KYGBgDQojIG90aGVyIG1lbnMgc3BvcnRzDQpgYGB7cn0NCm1lbnNwb3J0c18yMiA8LSBsZWRnZXJfMjAyMiAlPiUNCmNsZWFuX25hbWVzICU+JQ0KICBmaWx0ZXIob3JnYW5pemF0aW9uX25hbWUgPT0gIlBSRVMtSUNBLU90aGVyIE1lbidzIFNwb3J0cyIpJT4lDQogIGFycmFuZ2UoZGVzYyhncmFuZF90b3RhbF9hbXQpKQ0KDQojIHRvdGFsIGFtdCBzcGVudA0KbWVuc3BvcnRzMjJfc3VtIDwtbGVkZ2VyXzIwMjIgJT4lDQogIGNsZWFuX25hbWVzICU+JQ0KICBzdW1tYXJpemUoDQogICAgc3VtKGdyYW5kX3RvdGFsX2FtdCkNCiAgKQ0KDQooZm9vdGJhbGwyMl9zdW0gLSB3c3BvcnRzMjJfc3VtKQ0KDQpgYGA=</div>
 
 
 
