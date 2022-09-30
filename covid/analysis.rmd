@@ -240,6 +240,42 @@ self_reports_clean[is.null(self_reports_clean)] = 0
 uhc_reports_clean <- clean_historic_data %>%
   filter(self_reported_or_uhc_reported == "UHC Reported")
 
+```
+
+
+Joining the important policy dates to case
+```{r}
+
+#load in data
+data <- read_csv('data.csv') %>%
+  clean_names() %>%
+  rename(
+    date = positive_test_result_date
+  ) %>%
+  drop_na(question_from_laura) #%>%
+  # mutate(
+  #   number_of_cases = as.double(number_of_cases)
+  # )
+
+#clean date
+data$date <- as.Date(parse_date_time(data$date, "dmy"))
+data$year <- as.numeric(format(data$date, "%Y"))
+
+
+### policy dates
+historic_dates <- read_csv("historical_covid_dates.csv") %>%
+  select(dates, what_happened) %>%
+  rename(
+    date = dates
+  )
+
+join_dates_and_cases <- historic_dates %>%
+  left_join(data, by=c("date")) 
+
+write_xlsx(join_dates_and_cases, "join_dates_and_cases.xlsx")
+
+
+
 
 ```
 
