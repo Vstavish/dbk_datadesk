@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 library(dplyr)
+library(writexl)
+
 ```
 
 ```{r}
@@ -170,4 +172,46 @@ sum(fall2022u$count)+sum(fall2022sr$count)
 
 ```
 
+Pivoting, binding, and cleaning data here -- Shreya 
+```{r}
+
+#load in data
+data <- read_csv('data.csv') %>%
+  clean_names() %>%
+  rename(
+    date = positive_test_result_date
+  ) %>%
+  drop_na(question_from_laura) #%>%
+  # mutate(
+  #   number_of_cases = as.double(number_of_cases)
+  # )
+
+#clean date
+data$date <- as.Date(parse_date_time(data$date, "dmy"))
+data$year <- as.numeric(format(data$date, "%Y"))
+
+clean_historic_data <- data %>%
+  pivot_wider(names_from=primary_role, values_from=number_of_cases, values_fn = list, values_fill = 0) %>%
+  clean_names() %>%
+  mutate(
+    student = as.character(student)
+  )
+  #mutate(across(student:faculty, ~replace(., lengths(.) == 0, NA))) 
+
+#export to excel because efficiency and I don't know how
+write_xlsx(clean_historic_data, "clean_historic_data.xlsx")
+
+self_reports_clean <- clean_historic_data %>%
+  filter(self_reported_or_uhc_reported == "Self Reported") 
+
+# test
+fall2020 <- clean_historic_data[clean_historic_data$date >= "2020-08-30" & clean_historic_data$date <= "2020-12-22", ]
+self_reports_clean[is.null(self_reports_clean)] = 0
+
+
+uhc_reports_clean <- clean_historic_data %>%
+  filter(self_reported_or_uhc_reported == "UHC Reported")
+
+
+```
 
