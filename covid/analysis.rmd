@@ -8,6 +8,8 @@ date: "2022-09-29"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -17,7 +19,11 @@ library(dplyr)
 ```{r}
 data <- read_csv('data.csv')
 colnames(data) <- c('drop','type','role','date','count')
+data <- 
+  data%>% 
+drop_na(drop)
 data <- subset(data, select = -c(drop))
+
 
 #clean date
 data$date <- as.Date(parse_date_time(data$date, "dmy"))
@@ -25,6 +31,7 @@ data$year <- as.numeric(format(data$date, "%Y"))
 
 
 ```
+
 ```{r}
 #create dfs by semester
 fall2020 <- data[data$date >= "2020-08-30" & data$date <= "2020-12-22", ]
@@ -61,7 +68,106 @@ sum(fall2022$count)
 
 ```
 
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(data=data, aes(x=date, y=count, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+```{r}
+databydate <- data %>% group_by(date)
+databydate <- subset(databydate, select = -c(role))
 
 
+shortfall2020sr <- 
+  shortfall2020%>%
+  filter(type == "Self Reported")
+
+shortspring2021sr <- 
+  shortspring2021%>%
+  filter(type == "Self Reported")
+
+shortfall2021sr <- 
+  shortfall2021%>%
+  filter(type == "Self Reported")
+
+shortspring2022sr <- 
+  shortspring2022%>%
+  filter(type == "Self Reported")
+
+fall2022sr <- 
+  fall2022%>%
+  filter(type == "Self Reported")
+
+
+
+```
+
+```{r}
+sum(fall2020sr$count)
+sum(spring2021sr$count)
+sum(fall2021sr$count)
+sum(spring2022sr$count)
+sum(fall2022sr$count)
+
+
+
+```
+
+
+```{r}
+sum(fall2020sr$count)
+sum(spring2021sr$count)
+sum(fall2021sr$count)
+sum(spring2022sr$count)
+sum(fall2022sr$count)
+```
+
+```{r}
+
+shortfall2020u <- 
+  shortfall2020%>%
+  filter(type =="UHC Reported")
+
+shortspring2021u <- 
+  shortspring2021%>%
+  filter(type == "UHC Reported")
+
+shortfall2021u <- 
+  shortfall2021%>%
+  filter(type == "UHC Reported")
+
+shortspring2022u <- 
+  shortspring2022%>%
+  filter(type == "UHC Reported")
+
+fall2022u <- 
+  fall2022%>%
+  filter(type == "UHC Reported")
+
+```
+
+```{r}
+sum(fall2020u$count)
+sum(spring2021u$count)
+sum(fall2021u$count)
+sum(spring2022u$count)
+sum(fall2022u$count)
+```
+
+
+```{r}
+sum(fall2020u$count) + sum(fall2020sr$count)
+sum(shortspring2021u$count) + sum(shortspring2021sr$count)
+sum(shortfall2021u$count)+sum(shortfall2021sr$count)
+sum(shortspring2022u$count)+sum(shortspring2022sr$count)
+
+sum(fall2022u$count)+sum(fall2022sr$count)
+
+```
 
 
