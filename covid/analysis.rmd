@@ -246,20 +246,14 @@ uhc_reports_clean <- clean_historic_data %>%
 Joining the important policy dates to case
 ```{r}
 
+library(readxl)
+
 #load in data
-data <- read_csv('data.csv') %>%
+new_data <- read_xlsx("data_09_30.xlsx") %>%
   clean_names() %>%
   rename(
     date = positive_test_result_date
-  ) %>%
-  drop_na(question_from_laura) #%>%
-  # mutate(
-  #   number_of_cases = as.double(number_of_cases)
-  # )
-
-#clean date
-data$date <- as.Date(parse_date_time(data$date, "dmy"))
-data$year <- as.numeric(format(data$date, "%Y"))
+  ) 
 
 
 ### policy dates
@@ -269,11 +263,26 @@ historic_dates <- read_csv("historical_covid_dates.csv") %>%
     date = dates
   )
 
-join_dates_and_cases <- historic_dates %>%
-  left_join(data, by=c("date")) 
 
+##pivoted data
+join_dates_and_cases <- new_data %>%
+  left_join(historic_dates, by=c("date")) %>%
+  pivot_wider(names_from=primary_role, values_from=no_of_cases) %>%
+  clean_names() 
+
+##wider for fun
+wide_join_dates_and_cases <- new_data %>%
+  left_join(historic_dates, by=c("date")) %>%
+  select(-diamondback_request) %>%
+  group_by(reporting_type) %>%
+  pivot_wider(names_from=c("primary_role", "reporting_type"), values_from=no_of_cases) %>%
+  clean_names() %>%
+  mutate_at(c(3:8), ~replace_na(.,0))
+
+  
 write_xlsx(join_dates_and_cases, "join_dates_and_cases.xlsx")
 
+write_xlsx(wide_join_dates_and_cases, "wide_join_dates_and_cases.xlsx")
 
 
 
