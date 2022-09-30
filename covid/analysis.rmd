@@ -43,6 +43,13 @@ spring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-05-18", ]
 fall2022  <- data[data$date >= "2022-08-29",]
 
 
+#devon semesters - adjust start date for fall 2020, end date for fall 2021
+d_fall2020 <- data[data$date >= "2020-08-31" & data$date <= "2020-12-22", ]
+d_spring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-05-19", ]
+d_fall2021 <- data[data$date >= "2021-08-30" & data$date <= "2021-12-21", ]
+d_spring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-05-18", ]
+d_fall2022  <- data[data$date >= "2022-08-29",]
+
 ```
 
 ```{r}
@@ -52,13 +59,28 @@ sum(fall2021$count)
 sum(spring2022$count)
 sum(fall2022$count)
 
+#devon sums with new adjusted semesters
+sum(d_fall2020$count)
+sum(d_spring2021$count)
+sum(d_fall2021$count)
+sum(d_spring2022$count)
+sum(d_fall2022$count)
+
 ```
+
 ```{r}
 shortfall2020 <- data[data$date >= "2020-08-30" & data$date <= "2020-09-21", ]
-shortspring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-02-10", ]
+shortspring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-02-10", ] #why is this shorter? - devon
 shortfall2021 <- data[data$date >= "2021-08-30" & data$date <= "2021-09-21", ]
-shortspring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-02-11", ]
+shortspring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-02-11", ] #why is this shorter? - devon
 fall2022  <- data[data$date >= "2022-08-29",]
+
+#devon short sems adjusting fall 2020 start, spring 2021 end, fall 2021 end, spring 2022 end
+d_shortfall2020 <- data[data$date >= "2020-08-31" & data$date <= "2020-09-21", ]
+d_shortspring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-02-15", ]
+d_shortfall2021 <- data[data$date >= "2021-08-30" & data$date <= "2021-09-20", ]
+d_shortspring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-02-14", ]
+d_fall2022  <- data[data$date >= "2022-08-29",]
 ```
 
 ```{r}
@@ -68,6 +90,12 @@ sum(shortfall2021$count)
 sum(shortspring2022$count)
 sum(fall2022$count)
 
+#devon sums with adjusted semesters
+sum(d_shortfall2020$count)
+sum(d_shortspring2021$count)
+sum(d_shortfall2021$count)
+sum(d_shortspring2022$count)
+sum(d_fall2022$count)
 ```
 
 ```{r}
