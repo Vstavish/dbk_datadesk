@@ -1,0 +1,67 @@
+---
+title: "covid_analysis"
+output: html_document
+date: "2022-09-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(dplyr)
+```
+
+```{r}
+data <- read_csv('data.csv')
+colnames(data) <- c('drop','type','role','date','count')
+data <- subset(data, select = -c(drop))
+
+#clean date
+data$date <- as.Date(parse_date_time(data$date, "dmy"))
+data$year <- as.numeric(format(data$date, "%Y"))
+
+
+```
+```{r}
+#create dfs by semester
+fall2020 <- data[data$date >= "2020-08-30" & data$date <= "2020-12-22", ]
+spring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-05-19", ]
+fall2021 <- data[data$date >= "2021-08-30" & data$date <= "2021-12-22", ]
+spring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-05-18", ]
+fall2022  <- data[data$date >= "2022-08-29",]
+
+
+```
+
+```{r}
+sum(fall2020$count)
+sum(spring2021$count)
+sum(fall2021$count)
+sum(spring2022$count)
+sum(fall2022$count)
+
+```
+```{r}
+shortfall2020 <- data[data$date >= "2020-08-30" & data$date <= "2020-09-21", ]
+shortspring2021 <- data[data$date >= "2021-01-25" & data$date <= "2021-02-10", ]
+shortfall2021 <- data[data$date >= "2021-08-30" & data$date <= "2021-09-21", ]
+shortspring2022  <- data[data$date >= "2022-01-24" & data$date <= "2022-02-11", ]
+fall2022  <- data[data$date >= "2022-08-29",]
+```
+
+```{r}
+sum(shortfall2020$count)
+sum(shortspring2021$count)
+sum(shortfall2021$count)
+sum(shortspring2022$count)
+sum(fall2022$count)
+
+```
+
+
+
+
+
