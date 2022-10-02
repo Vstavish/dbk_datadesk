@@ -15,6 +15,7 @@ library(tidyverse)
 library(lubridate)
 library(dplyr)
 library(writexl)
+library(janitor)
 
 ```
 
@@ -65,6 +66,8 @@ sum(d_spring2021$count)
 sum(d_fall2021$count)
 sum(d_spring2022$count)
 sum(d_fall2022$count)
+
+
 
 ```
 
