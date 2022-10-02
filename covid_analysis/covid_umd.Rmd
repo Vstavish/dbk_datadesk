@@ -40,4 +40,29 @@ library(rio)
 
 ```{r}
 
+total_covid <- read_excel("historic_covid.xlsx") %>%
+  clean_names %>%
+  filter(positive_test_result_date == "2022")
+
+student_covid <- read_excel("historic_covid.xlsx") %>%
+  clean_names %>%
+  filter(primary_role == "Student") %>%
+  mutate(
+    sum(number_of_cases)
+  )
+
+staff_covid <- read_excel("historic_covid.xlsx") %>%
+  clean_names %>%
+  filter(primary_role == "Staff") %>%
+  mutate(
+    sum(number_of_cases)
+  )
+
+faculty_covid <- read_excel("historic_covid.xlsx") %>%
+  clean_names %>%
+  filter(primary_role == "Faculty") %>%
+  mutate(
+    sum(number_of_cases)
+  )
+
 ```
