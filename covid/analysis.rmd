@@ -23,8 +23,8 @@ library(readxl)
 ```{r}
 data <- read_csv('data930.csv')
 colnames(data) <- c('drop','type','role','date','count')
-data <- 
-  data%>% 
+data <-
+  data%>%
 drop_na(drop)
 data <- subset(data, select = -c(drop))
 
@@ -69,6 +69,8 @@ sum(d_spring2021$count)
 sum(d_fall2021$count)
 sum(d_spring2022$count)
 sum(d_fall2022$count)
+
+
 
 ```
 
@@ -147,23 +149,23 @@ databydate <- data %>% group_by(date)
 databydate <- subset(databydate, select = -c(role))
 
 
-newshortfall2020sr <- 
+newshortfall2020sr <-
   newshortfall2020%>%
   filter(type == "Self Reported")
 
-newshortspring2021sr <- 
+newshortspring2021sr <-
   newshortspring2021%>%
   filter(type == "Self Reported")
 
-newshortfall2021sr <- 
+newshortfall2021sr <-
   newshortfall2021%>%
   filter(type == "Self Reported")
 
-newshortspring2022sr <- 
+newshortspring2022sr <-
   newshortspring2022%>%
   filter(type == "Self Reported")
 
-newfall2022sr <- 
+newfall2022sr <-
   newfall2022%>%
   filter(type == "Self Reported")
 
@@ -193,23 +195,23 @@ sum(fall2022sr$count)
 
 ```{r}
 
-newshortfall2020u <- 
+newshortfall2020u <-
   newshortfall2020%>%
   filter(type =="UHC Reported")
 
-shortspring2021u <- 
+shortspring2021u <-
   shortspring2021%>%
   filter(type == "UHC Reported")
 
-shortfall2021u <- 
+shortfall2021u <-
   shortfall2021%>%
   filter(type == "UHC Reported")
 
-shortspring2022u <- 
+shortspring2022u <-
   shortspring2022%>%
   filter(type == "UHC Reported")
 
-fall2022u <- 
+fall2022u <-
   fall2022%>%
   filter(type == "UHC Reported")
 
@@ -234,7 +236,7 @@ sum(fall2022u$count)+sum(fall2022sr$count)
 
 ```
 
-Pivoting, binding, and cleaning data here -- Shreya 
+Pivoting, binding, and cleaning data here -- Shreya
 ```{r}
 
 #load in data
@@ -258,13 +260,13 @@ clean_historic_data <- data %>%
   mutate(
     student = as.character(student)
   )
-  #mutate(across(student:faculty, ~replace(., lengths(.) == 0, NA))) 
+  #mutate(across(student:faculty, ~replace(., lengths(.) == 0, NA)))
 
 #export to excel because efficiency and I don't know how
 write_xlsx(clean_historic_data, "clean_historic_data.xlsx")
 
 self_reports_clean <- clean_historic_data %>%
-  filter(self_reported_or_uhc_reported == "Self Reported") 
+  filter(self_reported_or_uhc_reported == "Self Reported")
 
 # test
 fall2020 <- clean_historic_data[clean_historic_data$date >= "2020-08-30" & clean_historic_data$date <= "2020-12-22", ]
@@ -285,7 +287,7 @@ new_data <- read_xlsx("data_09_30.xlsx") %>%
   clean_names() %>%
   rename(
     date = positive_test_result_date
-  ) 
+  )
 
 
 ### policy dates
@@ -300,7 +302,7 @@ historic_dates <- read_csv("historical_covid_dates.csv") %>%
 join_dates_and_cases <- new_data %>%
   left_join(historic_dates, by=c("date")) %>%
   pivot_wider(names_from=primary_role, values_from=no_of_cases) %>%
-  clean_names() 
+  clean_names()
 
 ##wider for fun
 wide_join_dates_and_cases <- new_data %>%
@@ -311,7 +313,7 @@ wide_join_dates_and_cases <- new_data %>%
   clean_names() %>%
   mutate_at(c(3:8), ~replace_na(.,0))
 
-  
+
 write_xlsx(join_dates_and_cases, "join_dates_and_cases.xlsx")
 
 write_xlsx(wide_join_dates_and_cases, "wide_join_dates_and_cases.xlsx")
@@ -319,4 +321,3 @@ write_xlsx(wide_join_dates_and_cases, "wide_join_dates_and_cases.xlsx")
 
 
 ```
-
