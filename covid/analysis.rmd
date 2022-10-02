@@ -237,7 +237,7 @@ data$date <- as.Date(parse_date_time(data$date, "dmy"))
 data$year <- as.numeric(format(data$date, "%Y"))
 
 clean_historic_data <- data %>%
-  pivot_wider(names_from=primary_role, values_from=number_of_cases, values_fn = list, values_fill = 0) %>%
+  pivot_wider(names_from=primary_role, values_from=number_of_cases, values_fn = length, values_fill = 0) %>%
   clean_names() %>%
   mutate(
     student = as.character(student)
@@ -261,7 +261,7 @@ uhc_reports_clean <- clean_historic_data %>%
 ```
 
 
-Joining the important policy dates to case -- Shreya
+Joining the important policy dates to cases -- Shreya
 ```{r}
 
 library(readxl)
