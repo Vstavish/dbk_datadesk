@@ -236,7 +236,7 @@ sum(fall2022u$count)+sum(fall2022sr$count)
 
 ```
 
-Pivoting, binding, and cleaning data here -- Shreya
+Pivoting, binding, and cleaning data here -- Shreya --- old and irrelevant :wave:
 ```{r}
 
 #load in data
