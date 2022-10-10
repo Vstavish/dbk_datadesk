@@ -67,7 +67,7 @@ date_occurred = as.Date(date_occurred, "%m/%d/%Y")
 )
 
 daily <- over_time %>%
-  filter
+  filter(date_occurred > '2017-01-01') %>%
   arrange(date_occurred) %>%
   group_by(date_occurred) %>%
   count()
