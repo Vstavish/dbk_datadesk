@@ -56,6 +56,20 @@ result_crime <- crime %>%
   count() %>%
   arrange(desc(n))
 
+```
+
+```{r}
+# crime over time
+
+over_time <- crime %>%
+  arrange(date_occurred) %>%
+  group_by(date_occurred) %>%
+  count()
+
+#over_time %>%
+  #ggplot() +
+  #geom_line(aes(x=date_occurred, y=n))
+
 
 ```
 
