@@ -62,13 +62,19 @@ result_crime <- crime %>%
 # crime over time
 
 over_time <- crime %>%
+mutate(
+date_occurred = as.Date(date_occurred, "%m/%d/%Y")
+)
+
+daily <- over_time %>%
+  filter
   arrange(date_occurred) %>%
   group_by(date_occurred) %>%
   count()
 
-#over_time %>%
-  #ggplot() +
-  #geom_line(aes(x=date_occurred, y=n))
+daily %>%
+  ggplot() +
+  geom_line(aes(x=date_occurred, y=n))
 
 
 ```
