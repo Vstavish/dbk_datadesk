@@ -285,7 +285,7 @@ Joining the important policy dates to cases -- Shreya
 ```{r}
 
 #load in data
-new_data <- read_xlsx("data_09_30.xlsx") %>%
+new_data <- read_xlsx("latest_9_30_covid_data.xlsx") %>%
   clean_names() %>%
   rename(
     date = positive_test_result_date
