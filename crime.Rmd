@@ -1,0 +1,61 @@
+---
+title: "crime"
+author: "Victoria Stavish"
+date: "2022-10-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(readxl)
+
+```
+```{r}
+# read in crime data 2017-2022
+crime <- read_csv("UMPD_crime_export_9_2017_to_9_2022.csv")
+
+```
+
+```{r}
+# common places
+
+place_crime <- crime %>%
+  group_by(location_desc) %>%
+  count() %>%
+  arrange(desc(n))
+  
+```
+
+```{r}
+# common crime
+
+type_crime <- crime %>%
+  group_by(type) %>%
+  count() %>%
+  arrange(desc(n))
+
+```
+
+
+```{r}
+# common results
+
+result_crime <- crime %>%
+  group_by(disposition) %>%
+  count() %>%
+  arrange(desc(n))
+
+
+```
+

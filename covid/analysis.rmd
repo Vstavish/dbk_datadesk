@@ -64,11 +64,11 @@ sum(spring2022$count)
 sum(fall2022$count)
 
 #devon sums with new adjusted semesters -- USE THIS FOR TOTAL SEM COUNT
-sum(d_fall2020$count)
-sum(d_spring2021$count)
-sum(d_fall2021$count)
-sum(d_spring2022$count)
-sum(d_fall2022$count)
+sum(d_fall2020$number_of_cases)
+sum(d_spring2021$number_of_cases)
+sum(d_fall2021$number_of_cases)
+sum(d_spring2022$number_of_cases)
+sum(d_fall2022$number_of_cases)
 
 
 
