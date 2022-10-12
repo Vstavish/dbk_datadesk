@@ -33,9 +33,14 @@ library(rgdal)
 library(rgeos)
 ```
 
-# Load ddata
+# Load data
 ```{r pressure, echo=FALSE}
 
+wages_2018 <- read_csv("data/hourly_wages_2018.csv")
+wages_2019 <- read_csv("data/hourly_wages_2019.csv")
+wages_2020 <- read_csv("data/hourly_wages_2020.csv")
+wages_2021 <- read_csv("data/hourly_wages_2021.csv")
+wages_2022 <- read_csv("data/hourly_wages_2022.csv")
 
 ```
 
