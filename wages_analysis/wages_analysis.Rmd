@@ -44,4 +44,10 @@ wages_2022 <- read_csv("data/hourly_wages_2022.csv")
 
 ```
 
+# Calculating averages and ranges of wages for each type of role - Shreya
+```{r}
+
+
+```
+
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
