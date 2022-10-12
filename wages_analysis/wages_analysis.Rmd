@@ -1,0 +1,42 @@
+---
+title: "Hourly wage data analysis"
+author: "Shreya Vuttaluru"
+date: '2022-10-12'
+output: html_document
+---
+
+## R Markdown
+
+# Load libraries
+```{r setup, include=FALSE}
+options(scipen = 999)
+
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(dplyr)
+library(parallel)
+library(tictoc)
+library(furrr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+library(sp)
+library(readxl)
+#install.packages(c("rgdal", "tidycensus"))
+library(tidycensus)
+#install.packages("stringdist")
+library(stringdist)
+library(rgdal)
+#install.packages("rgeos")
+library(rgeos)
+```
+
+# Load ddata
+```{r pressure, echo=FALSE}
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
