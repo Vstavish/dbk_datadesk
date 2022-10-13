@@ -47,6 +47,55 @@ wages_2022 <- read_csv("data/hourly_wages_2022.csv")
 # Calculating averages and ranges of wages for each type of role - Shreya
 ```{r}
 
+wages_2018 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  )
+
+wages_2019 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  )
+
+wages_2020 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  )
+
+wages_2021 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  )
+
+wages_2020 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  )
+
+wages_2022 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate)
+  ) %>%
+  arrange(desc(range))
+
 
 ```
 
