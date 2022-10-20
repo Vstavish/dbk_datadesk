@@ -1,0 +1,107 @@
+---
+title: "Hourly wage data analysis"
+author: "Shreya Vuttaluru"
+date: '2022-10-12'
+output: html_document
+---
+
+## R Markdown
+
+# Load libraries
+```{r setup, include=FALSE}
+options(scipen = 999)
+
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(dplyr)
+library(parallel)
+library(tictoc)
+library(furrr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+library(sp)
+library(readxl)
+#install.packages(c("rgdal", "tidycensus"))
+library(tidycensus)
+#install.packages("stringdist")
+library(stringdist)
+library(rgdal)
+#install.packages("rgeos")
+library(rgeos)
+```
+
+# Load data
+```{r pressure, echo=FALSE}
+
+wages_2018 <- read_csv("data/hourly_wages_2018.csv")
+wages_2019 <- read_csv("data/hourly_wages_2019.csv")
+wages_2020 <- read_csv("data/hourly_wages_2020.csv")
+wages_2021 <- read_csv("data/hourly_wages_2021.csv")
+wages_2022 <- read_csv("data/hourly_wages_2022.csv")
+
+```
+
+# Calculating averages and ranges of wages for each type of role - Shreya
+```{r}
+
+mins18 <-wages_2018 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  )
+
+mins19 <- wages_2019 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  )
+
+wages_2020 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  )
+
+mins21 <- wages_2021 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  )
+
+mins20 <- wages_2020 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  )
+
+mins22 <- wages_2022 %>%
+  clean_names() %>%
+  group_by(title) %>%
+  summarize(
+    average_rate = mean(hour_rate),
+    range = max(hour_rate) - min(hour_rate),
+    min_wage = min(hour_rate)
+  ) 
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
