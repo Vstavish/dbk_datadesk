@@ -74,8 +74,23 @@ daily <- over_time %>%
 
 daily %>%
   ggplot() +
-  geom_line(aes(x=date_occurred, y=n))
+  geom_line(aes(x=date_occurred, y=n)) 
+
+```
+
+```{r}
+# indecent exposures over time 
+
+indecent_exposures <- crime %>%
+  clean_names() %>%
+  mutate(
+date_occurred = as.Date(date_occurred, "%m/%d/%Y")
+) %>%
+  filter(type == "Indecent Exposure" |type == "Indecent Exposure (Title IX Related)")%>%
+filter(date_occurred > '2017-01-01')
+
 
 
 ```
+
 

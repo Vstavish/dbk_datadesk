@@ -192,76 +192,147 @@ items_2022 <- correctional_spending_2022 %>%
   arrange(desc(percent))
   
 ```
-# football spending
+
+
+# recruiting money 2022
 ```{r}
-# 22 spending descending
-football_spending22 <- ledger_2022 %>%
-  clean_names %>%
-  filter(organization_name == "PRES-ICA-Football")%>%
-  arrange(desc(grand_total_amt))
 
-# total amt spent
-football22_sum <-ledger_2022 %>%
-  clean_names %>%
-  summarize(
-    sum(grand_total_amt)
-  )
+# "football Recruiting" and "Charter bus services for football official visits June 2022" and "National HS, Offer Tracker, Transfer - BCS" and "Charter bus services for Football Official Visit weekend 6.24-6.2" and "Charter bus services for Football Official Visit weekends Jun" and "Whistle Recruiting - Recruiting Software" and "DMV Classified - DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages" and "Front Rush/Zcruit Recruiting Software" and "Pro Football Focus - Football Scouting Software FY23"
+presica_football22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Football", organization_name))
 
-# 21 is wack
-football_spending21 <- ledger_2021 %>%
-  clean_names %>%
-  filter(organization_name == "PRES-ICA-Director's Office/Admin")%>%
-  arrange(desc(amt_paid))
+recruit_football22 <- presica_football22 %>%
+  filter(item_ld %in% c("Football recruiting", "Football Recruiting", "Charter bus services for football official visits June 2022", "Recruiting subscription service; transfer portal for 2022 (Advanced Plus Package March 2022-February 2023)", "Charter bus services for Football Official Visit weekends June 2022 (6.3-6.23.22)", "National HS, Offer Tracker, Transfer - BCS", "Charter bus services for Football Official Visit weekend 6.24-6.26.22", "Whistle Recruiting - Recruiting Software", "DMV Classified - DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages", "Front Rush/Zcruit Recruiting Software", "Pro Football Focus - Football Scouting Software FY23", "National HS, Offer Tracker, Transfer - BCS", "The Underclassman Report - National Package with Portal and Archive 2022-23"))
+
+
+# "Synergy Sports WBB Database 2022-2023" and "WBB recruiting service for the 2022-23 season" and "FastRecruit Plus & FastScout Plus 2022-2023 Subscription" and "On Location Events - RMA charter bus services for WBB offic"
+presica_womens22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Women's Sports", organization_name))
+
+recruit_wbb22 <- presica_womens22 %>%
+  filter(item_ld %in% c("Synergy Sports WBB Database 2022-2023", "WBB recruiting service for the 2022-23 season", "FastRecruit Plus & FastScout Plus 2022-2023 Subscription", "On Location Events - RMA charter bus services for WBB official visit event in DC 7.30.22" ))
+  
+
+# "Gold Level Membership to scouting service" and "Assistance with scouting reports during the 2021-22 season" and "FastRecruit Premier: Men's Basketball recruiting scheduling ser" and "National Recruiting Report - Recruiting service Men's Basket" and "Absolute Basketball - Men's Basketball recruiting service 20" and "On the Radar Hoops - Men's Basketball 2022-2023 Recruitin" and "
+presica_basketball22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Men's Basketball", organization_name))
+
+recruit_bbal22 <- presica_basketball22 %>%
+  filter(item_ld %in% c("Gold Level Membership to scouting service", "Assistance with scouting reports during the 2021-22 season", "FastRecruit Premier: Men's Basketball recruiting scheduling service", "National Recruiting Report - Recruiting service Men's Basketball 2022-23", "Absolute Basketball - Men's Basketball recruiting service 2022-2023", "On the Radar Hoops - Men's Basketball 2022-2023 Recruiting package", "FastScout Premier: Men's Basketball recruiting scheduling service", "7.26.22 Recruit Photo Shoot"))
+
+
+
+# none
+presica_postseason22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Post Season", organization_name))
+
+# none
+presica_othermen22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Other Men's Sports", organization_name))
+
+
+# none
+presica_external22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-External Relations", organization_name))
+
+# none
+presica_support22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Support Services", organization_name))
+
+# none
+presica_operations22 <- ledger_2022 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Operations", organization_name))
+               
+# list of all Pres-ica departments
+# PRES-ICA-Football, PRES-ICA-Women's Sports | PRES-ICA-Men's Basketball | PRES-ICA-Post Season | PRES-ICA-Other Men's Sports | PRES-ICA-External Relations | PRES-ICA-Support Services | PRES-ICA-Operations 
 
 ```
 
-#basketball spending (mens)
+# recruiting money 2021
+
+# Preferred Athlete Scouting Services - 2021/2022 Gold Recruiting Subscription (mbb 2022)
+# DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages (football in 2022)
+# ThunderCloud Scout - Annual NCAA Subscription - $25,000 annually (MBB?)
+
+# National HS and Offer Tracker - BCS (fb 22)
+
+# The Underclassman Report - National Package with Portal and Archive 2021-22 (football 22)
+
+# Year 4 - GPS Tracking System, FY22
+(?who to attrib to?)
 ```{r}
-#22 spending
-mbbal_spending22 <- ledger_2022 %>%
-  clean_names %>%
-  filter(organization_name == "PRES-ICA-Men's Basketball")%>%
-  arrange(desc(grand_total_amt))
+
+presica21 <- ledger_2021 %>%
+  clean_names() %>%
+  filter(grepl("PRES-ICA-Director's Office/Admin", organization_name))
+
+# filter for FB
+recruit_football21 <- presica21 %>%
+  filter(itm_desc %in% c('Cole Field House "Throne" for Recruiting Suite', 'Pro Football Focus - Football Scouting Software FY22', 'Tracking Football LLC - annual football recruiting subscription service (Advanced Plus Package)', 'JuCo Football Scouting - REC Platinum package 3.1.21-2.28.22', 'Football Recruiting Lanyards', 'RECRUIT - Football national high school recruiting service/database 10.1.21-9.30.22', 'Football minibus for recruiting', 'DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages', 'National HS and Offer Tracker - BCS', 'The Underclassman Report - National Package with Portal and Archive 2021-22', 'Football minibus for recruiting'))
 
 
-# total amt spent
-mbbal22_sum <-ledger_2022 %>%
-  clean_names %>%
-  summarize(
-    sum(grand_total_amt)
-  )
+recruit_wbb21 <- presica21 %>%
+  filter(itm_desc %in% c("Women's Basketball recruiting scheduling service", "Photo Services for Women's Basketball recruiting", "WBB recruiting service for the 2021-22 season", "WBB to DC for official visits sightseeing 9.11.21", "Ohio Girls Basketball Report - 2021-2022 Recruiting Service", "Collegiate Girls Basketball Report - Recruit Central Subscription"))
+
+
+recruit_mbb21 <- presica21 %>%
+  filter(itm_desc %in% c("Hoop 1 Video - Men's Basketball scouting subscription 20-21 Season", "Men's Basketball recruiting  scheduling service", "Photo Services for Men's Basketball Recruiting 7.5.21", "National Recruiting Report - MBB 2021-22 Season", "MBB Scouting Service 5/31/21 to 5/31/22", "Preferred Athlete Scouting Services - 2021/2022 Gold Recruiting Subscription", "ThunderCloud Scout - Annual NCAA Subscription - $25,000 annually (Item#5308)"))
 
 ```
-# womens sports question mark
-```{r}
-wsports_22 <- ledger_2022 %>%
-  clean_names %>%
-  filter(organization_name == "PRES-ICA-Women's Sports")%>%
-  arrange(desc(grand_total_amt))
 
-# total amt spent
-wsports22_sum <-ledger_2022 %>%
-  clean_names %>%
-  summarize(
-    sum(grand_total_amt)
-  )
+# totals 22
+```{r}
+
+recruit_football22 %>%
+  mutate(total = sum(grand_total_amt))
+
+  
+  recruit_wbb22 %>%
+    mutate(total = sum(grand_total_amt))
+
+  
+  recruit_bbal22 %>%
+    mutate(total = sum(grand_total_amt))
 
 
 ```
-# other mens sports
+
+# totals 21
 ```{r}
-mensports_22 <- ledger_2022 %>%
-clean_names %>%
-  filter(organization_name == "PRES-ICA-Other Men's Sports")%>%
-  arrange(desc(grand_total_amt))
 
-# total amt spent
-mensports22_sum <-ledger_2022 %>%
-  clean_names %>%
-  summarize(
-    sum(grand_total_amt)
-  )
+recruit_football21 %>%
+  mutate(total = sum(amt_paid))
 
-(football22_sum - wsports22_sum)
+  
+  recruit_wbb21 %>%
+    mutate(total = sum(amt_paid))
+
+  
+  recruit_mbb21 %>%
+    mutate(total = sum(amt_paid))
+
 
 ```
+
+```{r}
+
+library(openxlsx)
+
+all_recruiting <- list('Sheet1' = recruit_football22, 'Sheet2' = recruit_football21, 'Sheet3' = recruit_bbal22, 'Sheet4' = recruit_mbb21, 'Sheet5' = recruit_wbb22, 'Sheet6' = recruit_wbb21)
+write.xlsx(all_recruiting, file = 'C:/Users/Vstav/Downloads/recruiting.xlsx')
+
+
+
+
+```
+
+
+
