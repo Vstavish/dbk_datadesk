@@ -50,13 +50,36 @@ tenured <- salary_2022 %>%
 as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty", category_status))
+
+summarise(tenured)
 ```
 
-# 
+# tenure and non-tenure faculty by division
 
 ```{r}
 
+by_division <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  select(division, category_status, appt_base_annual_salary) %>%
+  filter(grepl("Tenured | Tenure | Non", category_status)) %>%
+  group_by(division, category_status) %>%
+  count(category_status)
+
 ```
+
+# how many faculty in each division?
+
+```{r}
+division_faculty <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  group_by(division) %>%
+  count(division) %>%
+  arrange(desc(n))
+
+```
+
 
 
 
