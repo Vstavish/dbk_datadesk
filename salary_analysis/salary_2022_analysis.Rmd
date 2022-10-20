@@ -1,0 +1,62 @@
+---
+title: "salary_2022_analysis"
+author: "Victoria Stavish"
+date: "2022-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# load libraries
+
+```{r cars}
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+
+```
+
+# load data
+
+```{r}
+
+salary_2022 <- read_xlsx("salary_2022.xlsx")
+
+```
+
+# create dataframe of only non-tenured faculty
+# there are 3,343 non-tenured faculty
+
+```{r}
+
+non_tenured <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Non-Tenured", category_status))
+
+```
+
+# tenured
+# there are 1,353 tenured faculty
+
+```{r}
+tenured <- salary_2022 %>%
+as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty", category_status))
+```
+
+# 
+
+```{r}
+
+```
+
+
+
