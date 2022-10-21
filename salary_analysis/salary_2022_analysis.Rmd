@@ -40,6 +40,13 @@ non_tenured <- salary_2022 %>%
   clean_names() %>%
   filter(grepl("Non-Tenured", category_status))
 
+non_tenured_sum <- non_tenured %>%
+  summarise(
+    appt_base_annual_salary = sum(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+avg_non_tenured <- non_tenured_sum /3343
+
 ```
 
 # tenured
@@ -51,7 +58,14 @@ as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty", category_status))
 
-summarise(tenured)
+tenured_sum <- tenured %>%
+  summarise(
+    appt_base_annual_salary = sum(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+avg_tenured <- tenured_sum /1353
+
+
 ```
 
 # tenure and non-tenure faculty by division
@@ -79,6 +93,29 @@ division_faculty <- salary_2022 %>%
   arrange(desc(n))
 
 ```
+
+# avg tenure and non-tenure salary by division
+
+```{r}
+
+engineering <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "A. James Clark School of Engineering") %>%
+  group_by(category_status_cd) %>%
+  count(category_status_cd)
+
+
+  #filter(category_status_cd == "03 | 15 | 37") %>%
+  group_by(category_status) %>%
+  summarise( = sum(total_pills)) %>%
+  
+
+
+  
+
+```
+
 
 
 
