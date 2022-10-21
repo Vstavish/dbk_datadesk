@@ -329,10 +329,29 @@ library(openxlsx)
 all_recruiting <- list('Sheet1' = recruit_football22, 'Sheet2' = recruit_football21, 'Sheet3' = recruit_bbal22, 'Sheet4' = recruit_mbb21, 'Sheet5' = recruit_wbb22, 'Sheet6' = recruit_wbb21)
 write.xlsx(all_recruiting, file = 'C:/Users/Vstav/Downloads/recruiting.xlsx')
 
+```
 
+# mascot research
+```{r}
 
+testudo22 <- ledger_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("mascot", item_ld))
+
+testudo21 <- ledger_2021 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("mascot", itm_desc))
+
+testudo20 <- ledger_2020 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("mascot", item_ld))
+  
 
 ```
+
 
 
 
