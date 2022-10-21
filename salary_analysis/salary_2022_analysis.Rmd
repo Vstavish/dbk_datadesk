@@ -105,16 +105,23 @@ engineering <- salary_2022 %>%
   group_by(category_status_cd, primary_name, department) %>%
   count(primary_name)
 
+```
 
-  #filter(category_status_cd == "03 | 15 | 37") %>%
-  group_by(category_status) %>%
-  summarise( = sum(total_pills)) %>%
-  
+# duplicate names
+
+```{r}
+
+duplicate_names <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  group_by(category_status_cd, primary_name) %>%
+  count(primary_name) %>%
+  filter(n>1)
 
 
-  
 
 ```
+
 
 
 
