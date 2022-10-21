@@ -102,8 +102,8 @@ engineering <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(division == "A. James Clark School of Engineering") %>%
-  group_by(category_status_cd) %>%
-  count(category_status_cd)
+  group_by(category_status_cd, primary_name, department) %>%
+  count(primary_name)
 
 
   #filter(category_status_cd == "03 | 15 | 37") %>%
