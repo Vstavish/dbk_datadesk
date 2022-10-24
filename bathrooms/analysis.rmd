@@ -1,0 +1,46 @@
+---
+title: "bathrooms"
+output: html_document
+date: "2022-10-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+
+total_hjpsqft <- 103740.648
+```
+
+```{r}
+
+hjp <- read_csv("hjp.csv")
+
+wmns <- hjp %>%
+  filter(`Room Use` == "030J WOMEN RSTRM") %>%
+  summarize(total_sqft = sum(Area))
+
+
+mens <- hjp %>%
+  filter(`Room Use` == "030I MENS RESTRM")%>%
+  summarize(total_sqft = sum(Area))
+
+```
+
+```{r}
+mens <- read_csv("mens.csv")
+womens <- read_csv("womens.csv")
+```
+
+```{r}
+
+mens_building <- mens%>%
+      group_by(`Building Name`)
+
+summarise(mean = mean(disp), n = n())
+
+
+```
