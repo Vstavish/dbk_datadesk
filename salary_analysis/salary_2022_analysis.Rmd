@@ -322,119 +322,132 @@ salpolicy <- salary_2022 %>%
 
 ```{r}
 
-tenengineering <- salary_2022 %>%
+nonengineering <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "A. James Clark School of Engineering", category_status_cd == "01") %>%
+  filter(division == "A. James Clark School of Engineering") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
   
 
-tencmns <- salary_2022 %>%
+noncmns <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Computer, Math & Natural Sciences", category_status_cd == "01") %>%
+  filter(division == "College of Computer, Math & Natural Sciences") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenpres <- salary_2022 %>%
+nonpres <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "Office of the President", category_status_cd == "01") %>%
+  filter(division == "Office of the President")%>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenagr <- salary_2022 %>%
+nonagr <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Agriculture & Natural Resources", category_status_cd == "01") %>%
+  filter(division == "College of Agriculture & Natural Resources") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenarhu <- salary_2022 %>%
+nonarhu <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Arts & Humanities", category_status_cd == "01") %>%
+  filter(division == "College of Arts & Humanities") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenbsos <- salary_2022 %>%
+nonbsos <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Behavioral & Social Sciences", category_status_cd == "01") %>%
+  filter(division == "College of Behavioral & Social Sciences") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-teneducation <- salary_2022 %>%
+noneducation <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Education", category_status_cd == "01") %>%
+  filter(division == "College of Education") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-teninfosci <- salary_2022 %>%
+noninfosci <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "College of Information Studies", category_status_cd == "01") %>%
+  filter(division == "College of Information Studies") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenjour <- salary_2022 %>%
+nonjour <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "Philip Merrill College of Journalism", category_status_cd == "01") %>%
+  filter(division == "Philip Merrill College of Journalism") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenbusiness <- salary_2022 %>%
+nonbusiness <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "Robert H. Smith School of Business", category_status_cd == "01") %>%
+  filter(division == "Robert H. Smith School of Business") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenarchitecture <- salary_2022 %>%
+nonarchitecture <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "School of Architecture, Planning, & Preservation", category_status_cd == "01") %>%
+  filter(division == "School of Architecture, Planning, & Preservation") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tensph <- salary_2022 %>%
+nonsph <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "School of Public Health", category_status_cd == "01") %>%
+  filter(division == "School of Public Health") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
-tenpolicy <- salary_2022 %>%
+nonpolicy <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
-  filter(division == "School of Public Policy", category_status_cd == "01") %>%
+  filter(division == "School of Public Policy") %>%
+  filter(category_status_cd %in%  c("15", "03", "37")) %>%
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
