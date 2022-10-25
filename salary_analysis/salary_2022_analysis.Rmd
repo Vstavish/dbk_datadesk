@@ -102,10 +102,347 @@ engineering <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(division == "A. James Clark School of Engineering") %>%
-  group_by(category_status_cd, primary_name, department) %>%
-  count(primary_name)
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+cmns <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Computer, Math & Natural Sciences") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+pres <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Office of the President") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+agr <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Agriculture & Natural Resources") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+arhu <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "	
+College of Arts & Humanities") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+bsos <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Behavioral & Social Sciences") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+education <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Education") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+infosci <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Information Studies") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+jour <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Philip Merrill College of Journalism") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+business <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Robert H. Smith School of Business") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+architecture <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Architecture, Planning, & Preservation") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+sph <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Health") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
+
+policy <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Policy") %>%
+  group_by(category_status_cd, category_status) %>%
+  count(category_status_cd)
 
 ```
+
+# avg salary by division
+
+
+```{r}
+
+salengineering <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "A. James Clark School of Engineering") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+  
+
+salcmns <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Computer, Math & Natural Sciences") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salpres <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Office of the President") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salagr <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Agriculture & Natural Resources") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salarhu <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "	
+College of Arts & Humanities") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salbsos <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Behavioral & Social Sciences") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+saleducation <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Education") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salinfosci <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Information Studies") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+saljour <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Philip Merrill College of Journalism") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salbusiness <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Robert H. Smith School of Business") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salarchitecture <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Architecture, Planning, & Preservation") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salsph <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Health") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+salpolicy <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Policy") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+```
+
+# tenure faculty salary by division
+
+```{r}
+
+tenengineering <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "A. James Clark School of Engineering", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+  
+
+tencmns <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Computer, Math & Natural Sciences", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenpres <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Office of the President", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenagr <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Agriculture & Natural Resources", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenarhu <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Arts & Humanities", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenbsos <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Behavioral & Social Sciences", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+teneducation <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Education", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+teninfosci <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "College of Information Studies", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenjour <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Philip Merrill College of Journalism", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenbusiness <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "Robert H. Smith School of Business", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenarchitecture <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Architecture, Planning, & Preservation", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tensph <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Health", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+tenpolicy <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(division == "School of Public Policy", category_status_cd == "01") %>%
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  )
+
+```
+
+
 
 # duplicate names
 
