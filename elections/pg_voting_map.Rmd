@@ -103,8 +103,33 @@ for(i in 1:nrow(early_voting_with_address)) {
 ## shapefile for pg county
 pg_shp <- st_read("pg.geojson")
 
+## quick sentence case stuff
+early_voting_list <- early_voting_list %>%
+   mutate(
+    polling_place = str_to_title(polling_place),
+    map_addy = str_to_title(paste(street, city, sep=", "))
+    )
+  
+polling_list <- polling_list %>%
+  mutate(
+    name = str_to_title(name),
+    map_addy = str_to_title(paste(street, city, sep=", "))
+  )
+
+## for labels
+polling_labels <- sprintf(
+  "<strong>%s</strong><br/>Address: %s",
+  polling_list$name, polling_list$map_addy) %>%
+  lapply(htmltools::HTML)
+
+early_labels <- sprintf(
+  "<strong>%s</strong><br/>Address: %s",
+  early_voting_list$polling_place, early_voting_list$map_addy) %>%
+  lapply(htmltools::HTML)
+
+
 voting_map <- leaflet() %>%
-  addProviderTiles(providers$CartoDB.VoyagerLabelsUnder) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
   addPolylines(
     data = pg_shp,
     weight = 2,
@@ -112,7 +137,7 @@ voting_map <- leaflet() %>%
   ) %>%
   addCircleMarkers(group = "Election Day Voting",
                     data = polling_list,
-                    label = polling_list$name,
+                    label = ~polling_labels,
                     radius = 5,
                     color = "navy",
                     fillOpacity = 0.6,
@@ -121,9 +146,9 @@ voting_map <- leaflet() %>%
                     ) %>%
    addCircleMarkers(group = "Early Voting",
                     data = early_voting_list,
-                    label = early_voting_list$polling_place,
+                    label = ~early_labels,
                     radius = 5,
-                    color = "navy",
+                    color = "red",
                     fillOpacity = 0.6,
                     stroke = FALSE,
                     #highlightOptions = highlightOptions(color = "white", weight = 5, bringToFront = TRUE)
