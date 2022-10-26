@@ -254,6 +254,16 @@ presica_operations22 <- ledger_2022 %>%
 # list of all Pres-ica departments
 # PRES-ICA-Football, PRES-ICA-Women's Sports | PRES-ICA-Men's Basketball | PRES-ICA-Post Season | PRES-ICA-Other Men's Sports | PRES-ICA-External Relations | PRES-ICA-Support Services | PRES-ICA-Operations 
 
+#total list 
+
+total22_vendors <- ledger_2022 %>%
+  clean_names()%>%
+   filter(item_ld %in% c("Football recruiting", "Football Recruiting", "Charter bus services for football official visits June 2022", "Recruiting subscription service; transfer portal for 2022 (Advanced Plus Package March 2022-February 2023)", "Charter bus services for Football Official Visit weekends June 2022 (6.3-6.23.22)", "National HS, Offer Tracker, Transfer - BCS", "Charter bus services for Football Official Visit weekend 6.24-6.26.22", "Whistle Recruiting - Recruiting Software", "DMV Classified - DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages", "Front Rush/Zcruit Recruiting Software", "Pro Football Focus - Football Scouting Software FY23", "National HS, Offer Tracker, Transfer - BCS", "The Underclassman Report - National Package with Portal and Archive 2022-23, Synergy Sports WBB Database 2022-2023", "WBB recruiting service for the 2022-23 season", "FastRecruit Plus & FastScout Plus 2022-2023 Subscription", "On Location Events - RMA charter bus services for WBB official visit event in DC 7.30.22, Gold Level Membership to scouting service", "Assistance with scouting reports during the 2021-22 season", "FastRecruit Premier: Men's Basketball recruiting scheduling service", "National Recruiting Report - Recruiting service Men's Basketball 2022-23", "Absolute Basketball - Men's Basketball recruiting service 2022-2023", "On the Radar Hoops - Men's Basketball 2022-2023 Recruiting package", "FastScout Premier: Men's Basketball recruiting scheduling service", "7.26.22 Recruit Photo Shoot")) %>%
+  arrange(desc(grand_total_amt))
+  
+  
+  
+
 ```
 
 # recruiting money 2021
@@ -286,7 +296,25 @@ recruit_wbb21 <- presica21 %>%
 recruit_mbb21 <- presica21 %>%
   filter(itm_desc %in% c("Hoop 1 Video - Men's Basketball scouting subscription 20-21 Season", "Men's Basketball recruiting  scheduling service", "Photo Services for Men's Basketball Recruiting 7.5.21", "National Recruiting Report - MBB 2021-22 Season", "MBB Scouting Service 5/31/21 to 5/31/22", "Preferred Athlete Scouting Services - 2021/2022 Gold Recruiting Subscription", "ThunderCloud Scout - Annual NCAA Subscription - $25,000 annually (Item#5308)"))
 
+#totals 
+
+total21_vendors <- ledger_2021 %>%
+  clean_names() %>%
+   filter(itm_desc %in% c("Women's Basketball recruiting scheduling service", "Photo Services for Women's Basketball recruiting", "WBB recruiting service for the 2021-22 season", "WBB to DC for official visits sightseeing 9.11.21", "Ohio Girls Basketball Report - 2021-2022 Recruiting Service", "Collegiate Girls Basketball Report - Recruit Central Subscription", "Hoop 1 Video - Men's Basketball scouting subscription 20-21 Season", "Men's Basketball recruiting  scheduling service", "Photo Services for Men's Basketball Recruiting 7.5.21", "National Recruiting Report - MBB 2021-22 Season", "MBB Scouting Service 5/31/21 to 5/31/22", "Preferred Athlete Scouting Services - 2021/2022 Gold Recruiting Subscription", "ThunderCloud Scout - Annual NCAA Subscription - $25,000 annually (Item#5308)", 'Cole Field House "Throne" for Recruiting Suite', 'Pro Football Focus - Football Scouting Software FY22', 'Tracking Football LLC - annual football recruiting subscription service (Advanced Plus Package)', 'JuCo Football Scouting - REC Platinum package 3.1.21-2.28.22', 'Football Recruiting Lanyards', 'RECRUIT - Football national high school recruiting service/database 10.1.21-9.30.22', 'Football minibus for recruiting', 'DC, VA (NOVA/Tidewater), and MD (PG County) Premium Scouting Packages', 'National HS and Offer Tracker - BCS', 'The Underclassman Report - National Package with Portal and Archive 2021-22', 'Football minibus for recruiting'))%>%
+arrange(desc(amt_paid))
+  
+
 ```
+
+# reading all vendors to an excel
+
+```{r}
+
+all_recruiting <- list('Sheet1' = total21_vendors, 'Sheet2' = total22_vendors)
+write.xlsx(all_recruiting, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/recruiting')
+
+```
+
 
 # totals 22
 ```{r}
