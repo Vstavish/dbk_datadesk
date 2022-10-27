@@ -1,0 +1,45 @@
+---
+title: "crime_10_years"
+author: "Victoria Stavish"
+date: "2022-10-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# load libraries
+
+```{r}
+library(janitor)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+
+```
+
+
+# load data
+
+# 3 in 2013, 3 in 2014, 5 in 2015, 9 in 2016, 6 in 2017, 5 in 2018, 4 in 2019, 3 in 2020, 6 in 2021, 13 in 2022
+
+```{r}
+
+crime_data <- read_csv("UMPD_crime_export_9_2012_to_9_2022.csv") %>%
+  clean_names() %>%
+  mutate(
+date_occurred = as.Date(date_occurred, "%m/%d/%Y")) %>%
+  mutate(
+date_reported = as.Date(date_reported, "%m/%d/%Y"))
+  
+indecent_exposure <- crime_data %>%
+  clean_names() %>%
+  filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure") %>%
+  group_by(date_occurred) %>%
+  count(date_occurred)
+
+
+
+```
+
