@@ -16,6 +16,7 @@ library(janitor)
 library(tidyverse)
 library(dplyr)
 library(readxl)
+library(ggplot2)
 
 ```
 
@@ -31,15 +32,34 @@ crime_data <- read_csv("UMPD_crime_export_9_2012_to_9_2022.csv") %>%
   mutate(
 date_occurred = as.Date(date_occurred, "%m/%d/%Y")) %>%
   mutate(
-date_reported = as.Date(date_reported, "%m/%d/%Y"))
+date_reported = as.Date(date_reported, "%m/%d/%Y")) 
+
+crime_data$substring_date = substr(crime_data$date_occurred,1,4)
   
 indecent_exposure <- crime_data %>%
   clean_names() %>%
-  filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure") %>%
-  group_by(date_occurred) %>%
-  count(date_occurred)
+ filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure") %>%
+  group_by(substring_date) %>%
+  count()
+
+indecent_exposure %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
 
 
+```
+#overall crime
+
+```{r}
+
+crime_data_byyear <- crime_data %>%
+  group_by(substring_date) %>%
+  count()
+  
+
+crime_data_byyear %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
 
 ```
 
