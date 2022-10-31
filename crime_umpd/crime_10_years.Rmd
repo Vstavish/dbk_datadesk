@@ -48,16 +48,33 @@ indecent_exposure %>%
 
 
 ```
+# indecent exposures but account for assisting other agencies 
+
+```{r}
+
+more_indecent_exposure <- crime_data %>%
+  clean_names() %>%
+ filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)") %>%
+  group_by(substring_date) %>%
+  count()
+
+more_indecent_exposure %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
+
+```
+
 #overall crime
 
 ```{r}
 
-crime_data_byyear <- crime_data %>%
+more_crime_data_byyear <- crime_data %>%
+  filter(!grepl("Assist Other Agency", type)) %>%
   group_by(substring_date) %>%
   count()
   
 
-crime_data_byyear %>%
+more_crime_data_byyear %>%
   ggplot() +
   geom_bar(aes(x=substring_date, weight=n))
 
