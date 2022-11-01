@@ -130,6 +130,7 @@ early_labels <- sprintf(
 
 voting_map <- leaflet() %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(lat = 38.89673, lng = -76.90795, zoom = 10) %>%
   addPolylines(
     data = pg_shp,
     weight = 2,
@@ -154,13 +155,65 @@ voting_map <- leaflet() %>%
                     #highlightOptions = highlightOptions(color = "white", weight = 5, bringToFront = TRUE)
                     ) %>%
   addLayersControl(
-    baseGroups = c("Election Day Voting", "Early Voting"),
+    baseGroups = c("Early Voting", "Election Day Voting"),
     position = "topleft", 
     options = layersControlOptions(collapsed = FALSE)
   ) 
 
 library(htmlwidgets)
 saveWidget(voting_map, "voting_map.html")
+  
+
+```
+
+Social friendly
+```{r}
+
+test_social_early_labels <- sprintf(
+  "<strong>%s</strong><br/>Address: %s",
+  early_voting_list$polling_place, early_voting_list$map_addy) %>%
+  lapply(htmltools::HTML)
+
+social_early_labels <- sprintf(
+  "<strong>%s</strong>",
+  early_voting_list$polling_place) %>%
+  lapply(htmltools::HTML)
+
+social_voting_map <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.PositronNoLabels) %>%
+  setView(lat = 38.89673, lng = -76.90795, zoom = 10) %>%
+  addPolylines(
+    data = pg_shp,
+    weight = 2,
+    color = "black"
+  ) %>%
+  addCircleMarkers(group = "Election Day Voting",
+                    data = polling_list,
+                    label = ~polling_labels,
+                    radius = 5,
+                    color = "navy",
+                    fillOpacity = 0.6,
+                    stroke = FALSE,
+                    #highlightOptions = highlightOptions(color = "white", weight = 5, bringToFront = TRUE)
+                    ) %>%
+   addCircleMarkers(group = "Early Voting",
+                    data = early_voting_list,
+                    label = ~test_social_early_labels,
+                    labelOptions = labelOptions(noHide = T, textsize = "6.5px", textOnly = TRUE, direction = "right"),
+                    radius = 5,
+                    color = "red",
+                    fillOpacity = 0.6,
+                    stroke = FALSE,
+                    #highlightOptions = highlightOptions(color = "white", weight = 5, bringToFront = TRUE)
+                    ) %>%
+  addLayersControl(
+    baseGroups = c("Early Voting", "Election Day Voting"),
+    position = "topleft", 
+    options = layersControlOptions(collapsed = FALSE)
+  ) 
+
+library(htmlwidgets)
+saveWidget(social_voting_map, "social_voting_map.html")
   
 
 ```

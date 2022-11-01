@@ -1,0 +1,6 @@
+# ignore full snap dataset
+grocery_store/snap_data.csv
+
+
+# ignore census data
+grocery_store/census_data.rds
