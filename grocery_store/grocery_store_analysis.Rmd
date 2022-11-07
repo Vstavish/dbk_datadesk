@@ -1,0 +1,147 @@
+---
+title: "Grocery Store Analysis"
+author: "Shreya Vuttaluru"
+date: '2022-11-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+## general packages
+library(tidyverse)
+library(tidycensus)
+library(shiny)
+library(shinythemes)
+library(shinyWidgets)
+library(janitor)
+library(lubridate)
+library(leaflet)
+library(leaflet.extras)
+library(shiny)
+
+## geocoding packages
+library(ggmap)
+library(tmaptools)
+library(RCurl)
+library(jsonlite)
+library(tidyverse)
+library(leaflet)
+library(sf)
+
+## census API
+census_api_key("82c33dd2db316b78367d3476bcb90d2abe65a69a", install = TRUE, overwrite = TRUE)
+
+
+```
+
+## Load Grocery Store Data
+```{r}
+
+#full dataset
+historic_snap <- read_csv("snap_data.csv") %>%
+  clean_names()
+
+## filter for md
+md_snap <- historic_snap %>%
+  filter(state == "MD")
+
+```
+
+
+### Get Census Vars by Tract
+
+```{r}
+
+### decennial census variables 
+decennial_vars <- load_variables(2020, dataset="pl")
+
+### pull 2021 ACS data 
+race_2020 <- get_decennial(
+  geography = "tract", 
+  state = "MD",
+  variables = 
+    c(total_population = "P2_001N",
+      white_pop = "P2_005N",
+      black_pop = "P2_006N",
+      hisp_lat_pop = "P2_002N",
+      asian_pop = "P2_008N"),
+  year = 2020,
+  geometry = TRUE,
+  output = "wide"
+  ) %>% 
+  mutate(year=("2020")) %>%
+  clean_names() %>%
+  separate(name, into=c("tract","name","state"), sep=",") %>%
+  mutate(
+      state = str_trim(state,side="both"),
+      name = str_trim(name,side="both")
+  )
+
+### save 2020 census vars as RDS so we don't have to pull every time
+write_rds(race_2020, "census_data.rds")
+
+race_percentages <- race_2020 %>%
+  mutate(
+    percent_white = round((white_pop/total_population) * 100, 2),
+    percent_black = round((black_pop/total_population) * 100, 2),
+    percent_hisp_lat = round((hisp_lat_pop/total_population) * 100, 2),
+    percent_asian = round((asian_pop/total_population) * 100, 2) 
+    ) %>%
+  select(geoid, tract, name, state, percent_white, percent_black, percent_hisp_lat, percent_asian, total_population)
+
+### prince goerge's county relavent stats
+pg_demos <- race_percentages %>%
+  filter(name == "Prince George's County")
+
+```
+
+# Spatial join
+
+```{r}
+
+## wgs projection
+wgs <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+
+## make snap into sf object, make sure crs is consistent
+spatial_snap <- st_as_sf(historic_snap,
+                        crs = wgs,
+                        coords = c("longitude", "latitude")
+)
+
+spatial_pg_demos <- st_transform(pg_demos, crs = wgs)
+
+##join
+census_grocery_join <- spatial_pg_demos %>%
+  st_join(spatial_snap)
+
+
+```
+
+# Intitial Analysis
+
+```{r}
+
+## For now, let's filter out convenience stores:
+no_convenience <- census_grocery_join %>%
+  filter(store_type != "Convenience Store") %>%
+  st_drop_geometry()
+
+## how many grocery stores are there in neighborhoods that are majority black versus neighborhoods that aren't 
+
+majority_black_tracts <- no_convenience %>%
+  mutate(
+    majority_black_y_n = case_when(percent_black >= 50 ~ "Y",
+                                   percent_black < 50 ~ "N")
+  ) %>%
+  group_by(geoid, tract, name, majority_black_y_n) %>%
+  summarize(
+    count = n()
+  ) %>%
+  mutate(
+    majority_black_y_n = replace_na(majority_black_y_n, 0)
+  )
+  pivot_wider(names_from = majority_black_y_n, values_from = count)
+
+
+
+
+```
