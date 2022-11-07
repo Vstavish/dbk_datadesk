@@ -71,14 +71,19 @@ avg_tenured <- tenured_sum /1353
 # tenure and non-tenure faculty by division
 
 ```{r}
+edited_salary_2022 <- salary_2022 %>%
+  str_replace()
 
 by_division <- salary_2022 %>%
   as.data.frame() %>%
   clean_names() %>%
   select(division, category_status, appt_base_annual_salary) %>%
-  filter(grepl("Tenured | Tenure | Non", category_status)) %>%
+  filter(!str_detect("Exempt Regular|Nonexempt Regular|Exempt Contingent II|Nonexempt Contingent II", category_status)) %>%
   group_by(division, category_status) %>%
-  count(category_status)
+  count(category_status) %>%
+  pivot_wider(names_from=category_status, values_from=n) %>%
+  clean_names() %>%
+  mutate(pct_non_tenured = (non_tenured_non_regular_faculty/tenured_faculty)*100)
 
 ```
 

@@ -17,6 +17,8 @@ library(tidyverse)
 library(dplyr)
 library(readxl)
 library(ggplot2)
+library(writexl)
+library(readxl)
 
 ```
 
@@ -69,7 +71,7 @@ more_indecent_exposure %>%
 ```{r}
 
 more_crime_data_byyear <- crime_data %>%
-  filter(!grepl("Assist Other Agency", type)) %>%
+  #filter(!grepl("Assist Other Agency", type)) %>%
   group_by(substring_date) %>%
   count()
   
@@ -79,4 +81,32 @@ more_crime_data_byyear %>%
   geom_bar(aes(x=substring_date, weight=n))
 
 ```
+
+
+```{r}
+no_checks <- crime_data %>%
+  clean_names() %>%
+  filter(!str_detect("Injured/Sick Person", type)) %>%
+  group_by(substring_date) %>%
+  count()
+
+no_checks %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
+```
+
+```{r}
+
+incident_type <- crime_data %>%
+  clean_names() %>%
+  group_by(type) %>%
+  count()
+
+
+write_xlsx(incident_type,'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/crime_umpd/incident_type.xlsx')
+
+
+```
+
+
 
