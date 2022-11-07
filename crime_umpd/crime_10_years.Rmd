@@ -19,6 +19,7 @@ library(readxl)
 library(ggplot2)
 library(writexl)
 library(readxl)
+library(lubridate)
 
 ```
 
@@ -28,7 +29,7 @@ library(readxl)
 # 3 in 2013, 3 in 2014, 5 in 2015, 9 in 2016, 6 in 2017, 5 in 2018, 4 in 2019, 3 in 2020, 6 in 2021, 13 in 2022
 
 ```{r}
-
+#victoria
 crime_data <- read_csv("UMPD_crime_export_9_2012_to_9_2022.csv") %>%
   clean_names() %>%
   mutate(
@@ -36,14 +37,40 @@ date_occurred = as.Date(date_occurred, "%m/%d/%Y")) %>%
   mutate(
 date_reported = as.Date(date_reported, "%m/%d/%Y")) 
 
-crime_data$substring_date = substr(crime_data$date_occurred,1,4)
-  
-indecent_exposure <- crime_data %>%
+#devon fixing dates
+d_crime_data <- read_csv("UMPD_crime_export_9_2012_to_9_2022.csv") %>%
   clean_names() %>%
+  mutate(
+date_occurred = mdy(date_occurred)) %>%
+  mutate(
+date_reported = mdy(date_reported)) 
+
+#victoria
+crime_data$substring_date = substr(crime_data$date_occurred,1,4)
+
+#devon check
+d_crime_data$substring_date = substr(d_crime_data$date_occurred,1,4)
+
+#victoria  
+indecent_exposure <- crime_data %>%
+  clean_names() %>% #this has nothing to do with checking code but you probs dont need this line again lol - devon
  filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure") %>%
   group_by(substring_date) %>%
   count()
 
+#devon check
+d_crime_type <- d_crime_data %>% 
+  filter(substring_date == "2022") %>% 
+  #filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure")
+  group_by(type) %>% #, disposition) %>% 
+  count() 
+
+d_indecent_exposure <- d_crime_data %>%
+  filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)" | type == "Assist Other Agency / Indecent Exposure" | type == "Assist Other Agency (Title IX Related) / Indecent Exposure") %>%
+  group_by(substring_date) %>% #, disposition) %>%
+  count()
+
+#victoria
 indecent_exposure %>%
   ggplot() +
   geom_bar(aes(x=substring_date, weight=n))
@@ -53,7 +80,7 @@ indecent_exposure %>%
 # indecent exposures but account for assisting other agencies 
 
 ```{r}
-
+#victoria
 more_indecent_exposure <- crime_data %>%
   clean_names() %>%
  filter(type == "Indecent Exposure" | type == "Indecent Exposure (Title IX Related)") %>%
@@ -69,14 +96,25 @@ more_indecent_exposure %>%
 #overall crime
 
 ```{r}
-
+#victoria
 more_crime_data_byyear <- crime_data %>%
   #filter(!grepl("Assist Other Agency", type)) %>%
   group_by(substring_date) %>%
   count()
   
+#devon
+d_more_crime_data_byyear <- d_crime_data %>%
+  #filter(!grepl("Assist Other Agency", type)) %>%
+  group_by(substring_date) %>%
+  count()
 
+#victoria
 more_crime_data_byyear %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
+
+#devon
+d_more_crime_data_byyear %>%
   ggplot() +
   geom_bar(aes(x=substring_date, weight=n))
 
