@@ -30,6 +30,19 @@ salary_2022 <- read_xlsx("salary_2022.xlsx")
 
 ```
 
+#position types 
+
+```{r}
+
+position_types <- salary_2022 %>%
+  clean_names() %>%
+  filter(!grepl("Exempt|Contingent|Nonexempt", category_status)) %>%
+  group_by(category_status, category_status_cd) %>%
+  count()
+
+```
+
+
 # create dataframe of only non-tenured faculty
 # there are 3,343 non-tenured faculty
 
@@ -46,6 +59,11 @@ non_tenured_sum <- non_tenured %>%
   )
 
 avg_non_tenured <- non_tenured_sum /3343
+
+total_faculty <- 3343+1353
+
+pct_tenured <- 1353/4696
+# about 29% of professors and lecturers faculty are tenured 
 
 ```
 
