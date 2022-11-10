@@ -71,8 +71,6 @@ avg_tenured <- tenured_sum /1353
 # tenure and non-tenure faculty by division
 
 ```{r}
-edited_salary_2022 <- salary_2022 %>%
-  str_replace()
 
 by_division <- salary_2022 %>%
   as.data.frame() %>%
