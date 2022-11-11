@@ -19,6 +19,7 @@ library(lubridate)
 library(dplyr)
 library(readxl)
 library(ggplot2)
+library(writexl)
 
 ```
 
@@ -47,11 +48,33 @@ Faculty positions are academic positions that involve teaching, research, schola
 
 position_types <- salary_2022 %>%
   clean_names() %>%
-  filter(!grepl("Exempt|Contingent|Nonexempt", category_status)) %>%
-  group_by(category_status, category_status_cd) %>%
+  filter(!grepl("Tenured Faculty", category_status)) %>%
   count()
 
 ```
+
+# avg salary by position
+
+```{r}
+
+avg_position_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
+write_xlsx(avg_position_salary,'salary_breakdown_position_division.xlsx')
+
+  
+
+```
+
 
 
 # create dataframe of only non-tenured faculty
