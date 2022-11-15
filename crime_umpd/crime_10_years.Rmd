@@ -146,5 +146,20 @@ write_xlsx(incident_type,'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/
 
 ```
 
+```{r}
+cds_violation <- crime_data %>%
+  clean_names() %>%
+  filter(grepl("CDS Violation", type)) %>%
+  group_by(substring_date) %>%
+  count(substring_date)
+
+cds_violation %>%
+  ggplot() +
+  geom_bar(aes(x=substring_date, weight=n))
+
+
+```
+
+
 
 
