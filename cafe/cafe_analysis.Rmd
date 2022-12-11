@@ -157,7 +157,7 @@ yearly_sums <- cbind(sum_20, sum_21, sum_22) %>%
 
 ggplot(yearly_sums) +
   geom_bar(aes(x = year, weight=income)) +
-  ggtitle("total revenues acrosss all cafes, by year")
+  ggtitle("total sales acrosss all cafes, by year")
 
 ```
 # re format for month sums
@@ -249,7 +249,7 @@ cafe_2022_plot <- cafe_2022 %>%
 
 ggplot(cafe_2022_plot) +
   geom_bar(aes(x = reorder(cafe, cafe_total), weight=cafe_total)) +
-  ggtitle("cafe revenues 2022")+
+  ggtitle("cafe sales 2022")+
   coord_flip()
 
 

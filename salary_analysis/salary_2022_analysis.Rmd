@@ -31,6 +31,153 @@ salary_2022 <- read_xlsx("salary_2022.xlsx")
 
 ```
 
+```{r}
+count_engineering <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "A. James Clark School of Engineering") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_engineering <- count_engineering %>%
+  group_by(category_status) %>%
+  count()
+
+count_cmns <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Computer, Math & Natural Sciences") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_cmns <- count_cmns %>%
+  group_by(category_status) %>%
+  count()
+
+count_agr <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Agriculture & Natural Resources") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_agr <- count_agr %>%
+  group_by(category_status) %>%
+  count()
+
+count_arhu <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Arts & Humanities") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_arhu <- count_arhu %>%
+  group_by(category_status) %>%
+  count()
+
+count_bsos <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Behavioral & Social Sciences") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_bsos <- count_bsos %>%
+  group_by(category_status) %>%
+  count()
+
+count_education <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Education") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_education <- count_education %>%
+  group_by(category_status) %>%
+  count()
+
+count_infosci <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "College of Information Studies") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_infosci <- count_infosci %>%
+  group_by(category_status) %>%
+  count()
+
+count_jour <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "Philip Merrill College of Journalism")%>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_jour <- count_jour %>%
+  group_by(category_status) %>%
+  count()
+
+count_business <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "Robert H. Smith School of Business") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_business <- count_business %>%
+  group_by(category_status) %>%
+  count()
+
+count_arch <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "School of Architecture, Planning, & Preservation")%>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_arch <- count_arch %>%
+  group_by(category_status) %>%
+  count()
+
+count_sph <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "School of Public Health")%>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_sph <- count_sph %>%
+  group_by(category_status) %>%
+  count()
+
+count_policy <- salary_2022 %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "School of Public Policy")%>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_policy <- count_policy %>%
+  group_by(category_status) %>%
+  count()
+```
+
+
 #position types 
 
 # Non-Tenured, Non-Regular Faculty (37) --> 
@@ -56,13 +203,38 @@ position_types <- salary_2022 %>%
 # avg salary by position
 
 ```{r}
-
 avg_position_salary <- salary_2022 %>%
   clean_names() %>%
-  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary, primary_name) %>%
   filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
-  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs", division)) %>%
-  group_by(category_status, category_status_cd, division) %>% 
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Universities at Shady Grove|Office of Extended Studies", division))
+
+
+library(openxlsx)
+
+avg_position_salary <- list('Sheet1' = avg_position_salary)
+write.xlsx(avg_position_salary, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/this_one.xlsx')
+```
+
+
+```{r}
+
+count_engineering <- avg_position_salary %>%
+  as.data.frame() %>%
+  clean_names() %>%
+  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(division == "A. James Clark School of Engineering") %>%
+  group_by(appt_base_annual_salary, primary_name, category_status) %>%
+  count()
+
+count_engineering <- count_engineering %>%
+  group_by(category_status) %>%
+  count()
+```
+
+
+```{r}
+group_by(category_status, category_status_cd, division) %>% 
   mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
@@ -71,7 +243,72 @@ avg_position_salary <- salary_2022 %>%
 
 write_xlsx(avg_position_salary,'salary_breakdown_position_division.xlsx')
 
+avg_tenure_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Tenured Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Shady Grove", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
+
+avg_ptk_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Tenure Track Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Shady Grove", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
+avg_cont_contract_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Non-Tenured,Cont. Contr. Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Shady Grove", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
   
+avg_term_contract_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Non-Tenured, Term. Contr. Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Shady Grove", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
+avg_non_reg_salary <- salary_2022 %>%
+  clean_names() %>%
+  select(division, category_status, category_status_cd, appt_base_annual_salary) %>%
+  filter(grepl("Non-Tenured, Non-Regular Faculty", category_status)) %>%
+  filter(!str_detect("VP Research|Graduate School|Undergraduate Studies| Office of the President|Sr VP Academic Affairs & Provost|VP Student Affairs|Libraries|Shady Grove", division)) %>%
+  group_by(category_status, category_status_cd, division) %>% 
+  mutate(appt_base_annual_salary = as.numeric(appt_base_annual_salary)) %>%
+  summarise(
+    appt_base_annual_salary = median(appt_base_annual_salary, na.rm=TRUE)
+  ) %>%
+  arrange(desc(appt_base_annual_salary))
+
+library(openxlsx)
+
+all_salary_avgs <- list('Sheet1' = avg_tenure_salary, 'Sheet2' = avg_ptk_salary, 'Sheet3' = avg_cont_contract_salary, 'Sheet4' = avg_term_contract_salary, 'Sheet5' = avg_non_reg_salary)
+write.xlsx(all_salary_avgs, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/salary_analysis/avg_salary_by_position.xlsx')
 
 ```
 
