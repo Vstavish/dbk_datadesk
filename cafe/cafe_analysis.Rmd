@@ -34,7 +34,7 @@ cafe_2022 <- read_excel("cafe_2022.xlsx")
 
 ```
 
-# clean data
+# clean data and add cafe_totals column
 
 ```{r}
 
@@ -75,7 +75,7 @@ closed_cafes_2022 <- anti_join(cafe_2021, cafe_2022, by="cafe") %>%
 
 ```
 
-# 2020 revenue
+# 2020 revenue pivot_longer so it works for bar chart
 
 ```{r}
 
@@ -90,7 +90,7 @@ cafe_2020_bar <- cafe_2020 %>%
 
 ```
 
-# 2021 revenue
+# 2021 revenue pivot_longer so it works for bar chart
 
 ```{r}
 
@@ -104,7 +104,7 @@ cafe_2021_bar <- cafe_2021 %>%
 
 ```
 
-# 2022 revenue
+# 2022 revenue pivot_longer so it works for bar chart
 
 ```{r}
 
@@ -118,9 +118,11 @@ cafe_2022_bar <- cafe_2022 %>%
 
 ```
 
-# sum overall income each year and compare 
+# bind all pivoted dataframes to see ovrall income by year and by cafe
 
 ```{r}
+
+options(scipen=999)
 
 year_sum20 <- cafe_2020 %>%
   bind_rows(summarise(., across(where(is.numeric), sum),
@@ -158,50 +160,6 @@ yearly_sums <- cbind(sum_20, sum_21, sum_22) %>%
 ggplot(yearly_sums) +
   geom_bar(aes(x = year, weight=income)) +
   ggtitle("total sales acrosss all cafes, by year")
-
-```
-# re format for month sums
-
-```{r}
-
-cafe_2020_sums <- cafe_2020_bar %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  pivot_wider(
-  names_from = cafe, 
-  values_from = income
-  ) 
-
-
-cafe_2021_sums <- cafe_2021_bar %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  pivot_wider(
-  names_from = cafe, 
-  values_from = income
-  ) 
-
-
-cafe_2022_sums <- cafe_2022_bar %>%
-  as.data.frame() %>%
-  clean_names() %>%
-pivot_wider(
-  names_from = cafe, 
-  values_from = income
-  )
-
-
-library(openxlsx)
-
-all_sums <- list('Sheet1' = cafe_2020_sums, 'Sheet2' = cafe_2021_sums, 'Sheet3' = cafe_2022_sums)
-write.xlsx(all_sums, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/cafe/all_cafe_sums.xlsx')
-
-cafe_monthly_2020 <- read_excel("cafe_sums_2020.xlsx")
-
-cafe_monthly_2021 <- read_excel("cafe_sums_2021.xlsx")
-
-cafe_monthly_2022 <- read_excel("cafe_sums_2022.xlsx")
-
 
 ```
 
@@ -251,8 +209,6 @@ ggplot(cafe_2022_plot) +
   geom_bar(aes(x = reorder(cafe, cafe_total), weight=cafe_total)) +
   ggtitle("cafe sales 2022")+
   coord_flip()
-
-
 
 ```
 
