@@ -1,0 +1,81 @@
+---
+title: "Ledger Data"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("stringr")
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(stringr)
+library(dplyr)
+```
+
+```{r}
+ledger_2022 <- read_csv("ledger_2022.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2022 <- ledger_2022 %>% 
+  filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', itm_desc))
+```
+```{r}
+ledger_2021 <- read_csv("ledger_2021.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2021 <- ledger_2021 %>% 
+  filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', itm_desc))
+
+```
+
+```{r}
+ledger_2020 <- read_csv("ledger_2020.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2020 <- ledger_2020 %>% 
+  filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', item_ld))
+```
+
+```{r}
+ledger_2019 <- read_csv("ledger_2019.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2019 <- ledger_2019 %>% 
+   filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', item_ld))
+```
+```{r}
+ledger_2018 <- read_csv("ledger_2018.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2018 <- ledger_2018 %>% 
+   filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', item_ld))
+```
+```{r}
+ledger_2017 <- read_csv("ledger_2017.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+mold_ledger_2017 <- ledger_2017 %>% 
+   filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
+  filter(grepl('mold', item_ld))
+```

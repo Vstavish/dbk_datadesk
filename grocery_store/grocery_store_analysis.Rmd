@@ -17,6 +17,7 @@ library(lubridate)
 library(leaflet)
 library(leaflet.extras)
 library(shiny)
+library(readxl)
 
 ## geocoding packages
 library(ggmap)
@@ -43,6 +44,14 @@ historic_snap <- read_csv("snap_data.csv") %>%
 ## filter for md
 md_snap <- historic_snap %>%
   filter(state == "MD")
+
+### FARA data -- this dataset already filters out convenience stores and uses USDA metrics for food deserts
+fara_data <- read_excel("FARA_2019.xlsx", sheet = "Food Access Research Atlas")
+
+clean_fara_data <- fara_data %>%
+  clean_names() %>%
+  filter(county == "Prince George's County")
+
 
 ```
 
@@ -86,17 +95,54 @@ race_percentages <- race_2020 %>%
     percent_hisp_lat = round((hisp_lat_pop/total_population) * 100, 2),
     percent_asian = round((asian_pop/total_population) * 100, 2) 
     ) %>%
-  select(geoid, tract, name, state, percent_white, percent_black, percent_hisp_lat, percent_asian, total_population)
+  dplyr::select(geoid, tract, name, state, percent_white, percent_black, percent_hisp_lat, percent_asian, total_population)
 
 ### prince goerge's county relavent stats
 pg_demos <- race_percentages %>%
   filter(name == "Prince George's County")
 
+
+#### ACS Data for 2019 
+acs_2019 <- get_acs(
+  geography = "tract", 
+  state = "MD",
+  variables = 
+    c(total_population = "B03002_001",
+      white_pop = "B03002_003",
+      black_pop = "B03002_004",
+      hisp_lat_pop = "B03002_012",
+      asian_pop = "B03002_006"),
+  year = 2019,
+  geometry = TRUE,
+  output = "wide"
+  ) %>% 
+  mutate(year=("2019")) %>%
+  clean_names() %>%
+  separate(name, into=c("tract","name","state"), sep=",") %>%
+  mutate(
+      state = str_trim(state,side="both"),
+      name = str_trim(name,side="both")
+  )
+
+acs_percentages <- acs_2019 %>%
+  mutate(
+    percent_white = round((white_pop_e/total_population_e) * 100, 2),
+    percent_black = round((black_pop_e/total_population_e) * 100, 2),
+    percent_hisp_lat = round((hisp_lat_pop_e/total_population_e) * 100, 2),
+    percent_asian = round((asian_pop_e/total_population_e) * 100, 2) 
+    ) %>%
+  dplyr::select(geoid, tract, name, state, percent_white, percent_black, percent_hisp_lat, percent_asian, total_population_e)
+
+### prince goerge's county relavent stats
+acs_pg_demos <- acs_percentages %>%
+  filter(name == "Prince George's County")
+
 ```
 
-# Spatial join
-
+### Joins
 ```{r}
+
+### Spatial join pg county demographics to SNAP
 
 ## wgs projection
 wgs <- "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
@@ -114,10 +160,15 @@ census_grocery_join <- spatial_pg_demos %>%
   st_join(spatial_snap)
 
 
+### JOIN FARA data 
+fara_with_demos <- clean_fara_data %>%
+  left_join(acs_pg_demos, by=c("census_tract"="geoid"))
+
+
+
 ```
 
-# Intitial Analysis
-
+### Looking really quickly at stores in neighborhoods that are Black
 ```{r}
 
 ## For now, let's filter out convenience stores:
@@ -132,15 +183,39 @@ majority_black_tracts <- no_convenience %>%
     majority_black_y_n = case_when(percent_black >= 50 ~ "Y",
                                    percent_black < 50 ~ "N")
   ) %>%
-  group_by(geoid, tract, name, majority_black_y_n) %>%
+  group_by(majority_black_y_n) %>%
   summarize(
     count = n()
-  ) %>%
-  mutate(
-    majority_black_y_n = replace_na(majority_black_y_n, 0)
-  )
-  pivot_wider(names_from = majority_black_y_n, values_from = count)
+  ) 
 
+```
+
+### FARA Analysis -- looking at 1/2 mile access for urban area
+```{r}
+
+### urban tracts
+urban_fara <- fara_with_demos %>%
+  filter(urban == "1")
+### most tracts in P.G. county are considered urban
+
+### LILA at 1/2 miles
+access_one_mile <- fara_with_demos %>%
+  filter(lila_tracts_1and10 == "1")
+### 98/218 census tracts in Prince George's County don't have access to a grocery store within 1/2 a mile
+
+### some demos 
+black_half_mile <- access_half_mile %>%
+  dplyr::select(census_tract, state.x, percent_black, percent_hisp_lat, total_population_e, geometry) %>%
+  filter(percent_black > 50)
+
+hisp_half_mile <- access_half_mile %>%
+  dplyr::select(census_tract, state.x, percent_black, percent_hisp_lat, total_population_e, geometry) %>%
+  filter(percent_hisp_lat > 50)
+  
+
+access_half_mile <- fara_with_demos %>%
+  filter(lila_tracts_half_and10 == "1")
+### 25/218 census tracts in Prince George's County don't have access to a grocery store within 1/2 a mile
 
 
 
