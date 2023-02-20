@@ -78,9 +78,9 @@ positions_in_division <- data %>%
 # data frame of how many of each positions exist in each college (AKA disclude anything that isn't one of the 12 colleges at this university)
 positions_in_colleges <- data %>%
   clean_names() %>%
-  filter(!str_detect("Office of the President|Office of Extended Studies|	
-Libraries|Graduate School|Facilities Management|	
-Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|	
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
 VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
   group_by(division, category_status) %>%
   count() %>%
@@ -103,9 +103,9 @@ avg_college_pay <- data %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(!str_detect("Office of the President|Office of Extended Studies|	
-Libraries|Graduate School|Facilities Management|	
-Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|	
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
 VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
   group_by(division, category_status) %>%
   mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
@@ -113,7 +113,7 @@ VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University 
     avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
     ) %>%
   pivot_wider(names_from = division, values_from = avg_salary)
-  
+
 
 ```
 # avg pay each position overall (discluding admin, libraries, etc.)
@@ -123,9 +123,9 @@ avg_pay_all <- data %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(!str_detect("Office of the President|Office of Extended Studies|	
-Libraries|Graduate School|Facilities Management|	
-Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|	
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
 VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
   group_by(category_status) %>%
   mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
@@ -147,5 +147,3 @@ write.xlsx(salary_by_division, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/
 ```{r}
 
 ```
-
-
