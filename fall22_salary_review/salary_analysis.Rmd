@@ -26,11 +26,11 @@ library(openxlsx)
 
 ```{r}
 
-data <- read_excel("salary_2022.xlsx")
+data <- read_excel("C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_2022.xlsx")
 
 ```
 
-# Work for the bee swarm salary distribution graphics 
+# Work for the bee swarm salary distribution graphics - this is the only graphic that truly contains ALL positions
 
 ```{r}
 
@@ -43,7 +43,7 @@ all_positions <- data %>%
 
 
 # write that to a cleaner Excel file --> this is the file used for the beeswarm salary distribution graphic
-write.xlsx(all_positions, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/328t/final_proj/salary_data.xlsx')
+write.xlsx(all_positions, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_data.xlsx')
 
 ```
 
@@ -54,16 +54,16 @@ median_total <- median(all_positions$appt_base_annual_salary)
 
 ```
 
-# The following is work to get the numbers for the donut charts graph
+# The following is work to get the numbers for the donut charts graph - This graphic only contains data for people who work in one of the 12 colleges on campus (AKA not libraries, VP Administration, etc.)
 
 ```{r}
-# check all the category status types
+# check all the category status types to make sure I'm not missing any
 all_categories <- data %>%
   clean_names() %>%
   group_by(category_status) %>%
   count()
 
-# check all the divisions
+# check all the divisions to make sure I'm not missing any
 all_divisions <- data %>%
   clean_names() %>%
   group_by(division) %>%
@@ -83,216 +83,43 @@ Libraries|Graduate School|Facilities Management|
 Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|	
 VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
   group_by(division, category_status) %>%
-  count()
+  count() %>%
+  pivot_wider(names_from = category_status, values_from = n)
 
-# write the positions_in_division dataframe into an Excel sheet --> this is the Excel sheet used for the donut chart graphic
+# write the positions_in_colleges dataframe into an Excel sheet --> this is the Excel sheet used for the donut chart graphic
 
-write.xlsx(positions_in_colleges, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/328t/final_proj/salary_by_division.xlsx')
+write.xlsx(positions_in_colleges, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/position_counts.xlsx')
 
 ```
-# This is the work to get the median salaries graphic 
+# This is the work to get the median salaries bar charts graphic - This graphic only contains data for people who work in one of the 12 colleges on campus (AKA not libraries, VP Administration, etc.)
 
-# eng avg salary by faculty positions
+# I first found the average salaries of each position in each college, and then the average salary of each position at all colleges overall. I then combined those into one excel sheet
+
 ```{r}
 
-avg_eng_pay <- data %>%
+#dataframe that shows avg salary of each position at each college
+
+avg_college_pay <- data %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "A. James Clark School of Engineering") %>%
-  group_by(category_status) %>%
+  filter(!str_detect("Office of the President|Office of Extended Studies|	
+Libraries|Graduate School|Facilities Management|	
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|	
+VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
+  group_by(division, category_status) %>%
   mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
   summarise(
     avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-# agr avg salary by faculty positions
-```{r}
-
-avg_agr_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Agriculture & Natural Resources") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-
-# arhu avg salary by faculty positions
-```{r}
-
-avg_arhu_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Arts & Humanities") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-
-# bsos avg salary by faculty positions
-```{r}
-
-avg_bsos_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Behavioral & Social Sciences") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-# cmns avg salary by faculty positions
-```{r}
-
-avg_cmns_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Computer, Math & Natural Sciences") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-
-# inst avg salary by faculty positions
-```{r}
-
-avg_inst_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Information Studies") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-# jour avg salary by faculty positions
-```{r}
-
-avg_jour_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "Philip Merrill College of Journalism") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-
-# business avg salary by faculty positions
-```{r}
-
-avg_bus_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "Robert H. Smith School of Business") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-
-```
-
-# arch avg salary by faculty positions
-```{r}
-
-avg_arch_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "School of Architecture, Planning, & Preservation") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-
-# sph avg salary by faculty positions
-```{r}
-
-avg_sph_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "School of Public Health") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-# policy avg salary by faculty positions
-```{r}
-
-avg_policy_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "School of Public Policy") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
-
-```
-
-# education avg salary by faculty positions
-```{r}
-
-avg_edu_pay <- data %>%
-  as.data.frame() %>%
-  clean_names() %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
-  filter(division == "College of Education") %>%
-  group_by(category_status) %>%
-  mutate(avg_salary = as.numeric(appt_base_annual_salary)) %>%
-  summarise(
-    avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
-  )
+    ) %>%
+  pivot_wider(names_from = division, values_from = avg_salary)
+  
 
 ```
 # avg pay each position overall (discluding admin, libraries, etc.)
 ```{r}
 
-avg_pay <- data %>%
+avg_pay_all <- data %>%
   as.data.frame() %>%
   clean_names() %>%
   filter(grepl("Tenured Faculty|Tenure Track Faculty|Non-Tenured,Cont. Contr. Faculty|Non-Tenured, Term. Contr. Faculty|Non-Tenured, Non-Regular Faculty|Exempt Regular|Nonexempt Regular|Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
@@ -306,9 +133,16 @@ VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University 
     avg_salary = median(appt_base_annual_salary, na.rm=TRUE)
   )
 
+# this is me putting both the data frames avg_college_pay and avg_pay_all into an excel sheet. Sheet 1 has all avg salaries by position and college. Sheet 2 has avg salaries by position overall across all 12 colleges. To put this into Flourish, I just copy and pasted the data from Sheet 2 into Sheet 1 to add an 'all' column.
+
+salary_by_division <- list('Sheet1' = avg_college_pay, 'Sheet2' = avg_pay_all)
+write.xlsx(salary_by_division, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_by_division.xlsx')
+
+
+
 ```
 
-# THIS IS THE END OF WHAT YOU SHOULD NEED TO CHECK THE GRAPHICS. BELOW IS THE UNEEDED CODE THAT I HAVE IN CASE I DECIDED I WANTED TO RE-INCLUDE SOMETHING.
+# THIS IS THE END OF WHAT YOU SHOULD NEED TO CHECK THE GRAPHICS
 
 ```{r}
 
