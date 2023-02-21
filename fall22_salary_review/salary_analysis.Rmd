@@ -26,7 +26,30 @@ library(openxlsx)
 
 ```{r}
 
-data <- read_excel("C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_2022.xlsx")
+data <- read_excel("salary_2022.xlsx") %>% 
+  clean_names()
+
+#looking for duplicates - DM
+data_dupes <- data %>%
+  clean_names() %>% 
+  group_by(division, department, title, category_status_cd, category_status, primary_name) %>% 
+  summarise(
+    count = n()
+  ) %>%
+  filter(count > 1) %>% 
+  left_join(data, by=c("division", "department", "title", "category_status_cd", "category_status", "primary_name")) %>% 
+  select(-count)
+
+  
+
+#top 10 highest paid - DM
+top_ten_paid_peeps <- data %>% 
+  clean_names() %>% 
+  arrange(desc(appt_base_annual_salary)) %>% 
+  slice(1:10) %>% 
+  select(primary_name, appt_base_annual_salary)
+
+write.xlsx(top_ten_paid_peeps, file = 'top_ten_peeps.xlsx')
 
 ```
 
