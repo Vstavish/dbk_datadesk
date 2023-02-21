@@ -146,4 +146,16 @@ write.xlsx(salary_by_division, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/
 
 ```{r}
 
+
+pct_contingent <- data %>%
+  clean_names() %>%
+  filter(grepl("Nonexempt Contingent II|Exempt Contingent II", category_status)) %>%
+  count()
+
+
+312/10478
+  
+
+  
+
 ```
