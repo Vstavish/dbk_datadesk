@@ -134,6 +134,18 @@ uni_non_tenure <- all_positions %>%
 
 median_uni_non_tenure <- median(uni_non_tenure$appt_base_annual_salary)
 
+
+##uh oh
+uh_oh <- all_positions %>% 
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
+VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>% 
+  group_by(category_status) %>% 
+  summarise(
+    count = n()
+  )
+
 ```
 
 
