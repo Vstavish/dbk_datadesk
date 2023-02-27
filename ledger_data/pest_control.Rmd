@@ -1,0 +1,25 @@
+---
+title: "Pest Control Data"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(ggplot2)
+```
+
+```{r}
+ledger_2022 <- read_csv("ledger_files/ledger_2022.csv") %>% 
+  as.data.frame() %>% 
+  clean_names()
+
+pest_ledger_2022 <- ledger_2022 %>% 
+  filter(grepl('pest control', itm_desc))
+```
+
+
