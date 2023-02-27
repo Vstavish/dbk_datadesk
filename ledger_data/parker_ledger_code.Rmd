@@ -12,14 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-install.packages("stringr")
-```
-
-```{r}
 library(tidyverse)
 library(janitor)
 library(stringr)
-library(dplyr)
+library(ggplot2)
 ```
 
 ```{r}
@@ -31,6 +27,7 @@ mold_ledger_2022 <- ledger_2022 %>%
   filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
   filter(grepl('mold', itm_desc))
 ```
+
 ```{r}
 ledger_2021 <- read_csv("ledger_2021.csv") %>% 
   as.data.frame() %>% 
@@ -78,4 +75,24 @@ ledger_2017 <- read_csv("ledger_2017.csv") %>%
 mold_ledger_2017 <- ledger_2017 %>% 
    filter(vendor_name %in% c("CLEANHEALTH ENVIRONMENTAL, LLC","CFI CONSTRUCTION CORP", "INTEGRITY FLOORS INC","ACM SERVICES INC", "WACO INC","RETRO ENVIRONMENTAL INC", "SANDOW CONSTRUCTION, INC.","AEROSOL MONITORING & ANALYIS INC","RICH MOE ENTERPRISES, LLC","ECO INTERIOR MAINTENANCE","SI RESTORATION INC","INFINITY ENVIRONMENTAL, INC.", "M&S ENTERPRISES INC")) %>% 
   filter(grepl('mold', item_ld))
+```
+
+```{r}
+year <- c(2017, 2018, 2019, 2020, 2021, 2022)
+number_of_mold_clean_ups <- c(12, 21, 13, 39, 27, 27)
+
+total_mold_numbers <- data.frame(year, number_of_mold_clean_ups)
+```
+
+```{r}
+ggplot(total_mold_numbers, aes(year, number_of_mold_clean_ups, fill=number_of_mold_clean_ups)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Number of Mold Clean-Ups at UMD 2017-2022",
+    x = "Year",
+    y = "Number of clean-ups",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+  
+  
 ```
