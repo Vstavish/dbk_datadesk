@@ -91,7 +91,8 @@ ledger_2020 <- read_csv("ledger_2020.csv") %>%
 pest_ledger_2020 <- ledger_2020 %>% 
   filter(grepl('pest control', item_ld)) %>% 
   group_by(grand_total_amt) %>% 
-  count(organization_name, grand_total_amt, sort = TRUE) 
+  count(grand_total_amt, organization_name) %>% 
+  arrange(grand_total_amt)
 
 shorter_pest_ledger_2020 <- pest_ledger_2020 %>%
   mutate(organization_name = recode(organization_name, 
@@ -123,7 +124,8 @@ ledger_2019 <- read_csv("ledger_2019.csv") %>%
 pest_ledger_2019 <- ledger_2019 %>% 
   filter(grepl('pest control', item_ld)) %>% 
   group_by(grand_total_amt) %>% 
-  count(organization_name, grand_total_amt, sort = TRUE) 
+  count(grand_total_amt, organization_name) %>% 
+  arrange(grand_total_amt)
 
 ggplot(shorter_pest_ledger_2019,
        aes(x = organization_name, y = grand_total_amt)) +
@@ -161,6 +163,176 @@ ggplot(shorter_pest_ledger_2018,
                   point.padding = 0.5) +
   labs(
     title = "Cost of Pest Control Per Organization 2018",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+```
+
+```{r}
+pest_ledger_2022 <- read_csv("pest_2022.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2022_updated <- pest_ledger_2022[-5,]
+
+pest_ledger_2022_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_amt_paid)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2022",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+
+```
+
+```{r}
+pest_ledger_2021 <- read_csv("pest_2021.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2021_updated <- pest_ledger_2021[-5,]
+
+pest_ledger_2021_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_amt_paid)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2021",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+
+```
+
+```{r}
+pest_ledger_2020 <- read_csv("pest_2020.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2020_updated <- pest_ledger_2020[-6,]
+
+pest_ledger_2020_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_grand_total_amt)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2020",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+```
+
+```{r}
+pest_ledger_2019 <- read_csv("pest_2019.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2019_updated <- pest_ledger_2019[-5,]
+
+pest_ledger_2019_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_grand_total_amt)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2019",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+```
+
+```{r}
+pest_ledger_2018 <- read_csv("pest_2018.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2018_updated <- pest_ledger_2018[-6,]
+
+pest_ledger_2018_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_grand_total_amt)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2018",
+    x = "Organization Name",
+    y = "Cost of pest control",
+    caption = "source: UMD ledger - By: Parker Leipzig"
+  ) 
+```
+
+```{r}
+pest_ledger_2017 <- read_csv("pest_2017.csv") %>% 
+  as.data.frame() %>% 
+  clean_names() 
+
+pest_ledger_2017_updated <- pest_ledger_2017[-5,]
+
+pest_ledger_2017_updated %>% 
+  mutate(organization_name = recode(organization_name, 
+  "VPSA-Fraternity and Sorority Life" = "Fraternity/Sorority Life",
+  "VPA-FM-O&M-IBBR Facilities Operations" = "Facilities Operations",
+  "VPSA-Dining Services" = "Dining Services",
+  "AGNR-UME-Dorchester" = "AGNR")) %>% 
+  ggplot(aes(x = organization_name, y = sum_of_grand_total_amt)) +
+  geom_point() +
+  theme(axis.text.x=element_blank(), 
+        axis.ticks.x=element_blank()) +
+  geom_label_repel(aes(label = organization_name),
+                  box.padding   = 0.35, 
+                  point.padding = 0.5) +
+  labs(
+    title = "Cost of Pest Control Per Organization 2017",
     x = "Organization Name",
     y = "Cost of pest control",
     caption = "source: UMD ledger - By: Parker Leipzig"
