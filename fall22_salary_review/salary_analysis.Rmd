@@ -151,10 +151,14 @@ write.xlsx(salary_by_division, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/
 ```{r}
 
 
-journalism <- data %>%
-  clean_names() %>%
-  filter(grepl("Philip Merrill College of Journalism", division)) %>%
-  filter(grepl("Tenured Faculty|Tenure Track Faculty", category_status)) %>%
+
+counting <- all_positions %>%
+  clean_names()%>%
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
+VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>%
+  group_by(category_status) %>%
   count()
   
 
