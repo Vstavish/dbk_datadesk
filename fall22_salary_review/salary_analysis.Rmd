@@ -26,7 +26,8 @@ library(openxlsx)
 
 ```{r}
 
-data <- read_excel("C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_2022.xlsx")
+data <- read_excel("salary_2022.xlsx") %>% 
+  clean_names()
 
 ```
 
@@ -50,6 +51,104 @@ all_positions <- all_positions[-7933,]
 write.xlsx(all_positions, file = 'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/fall22_salary_review/salary_data.xlsx')
 
 ```
+
+#data dupes and top 10 peeps - DM
+```{r}
+#data dupes
+data_dupes <- data %>% 
+  clean_names() %>% 
+  group_by(division, department, title, category_status_cd, category_status, primary_name) %>% 
+  count() %>% 
+  filter(n > 1) %>%
+  left_join(data, by=c("division", "department", "title", "category_status_cd", "category_status", "primary_name")) %>% 
+  select(-n)
+
+
+#top 10 peeps
+top_ten_peeps <- all_positions %>% 
+  arrange(desc(appt_base_annual_salary)) %>% 
+  slice(1:10) %>% 
+  select(primary_name, appt_base_annual_salary)
+
+write.xlsx(top_ten_peeps, file="top_ten_peeps.xlsx")
+
+```
+
+#fact checking - DM
+```{r}
+
+#The University of Maryland spent nearly $1 billion on base salaries for fall 2022 employees
+sum_salaries <- sum(all_positions$appt_base_annual_salary)
+
+#This university’s data groups Pines and Evans with nearly 3,600 exempt, regular employees 
+exempt_regular <- all_positions %>% 
+  filter(category_status == "Exempt Regular")# %>% 
+  # group_by(title) %>% 
+  # summarise(
+  #   count = n()
+  # )
+
+#Meanwhile, coaches such as Brenda Frese and Mike Locksley are considered non-tenured faculty members, the same designation given to research scientists, librarians and lecturers. 
+
+non_tenure_cont_contr_faculty <- all_positions %>% 
+  filter(category_status == "Non-Tenured,Cont. Contr. Faculty")
+
+#Non-tenured faculty members, who work on contracts and receive lower pay than their tenured colleagues, accounted for 32 percent of university employees in 2022.
+all_non_tenure <- all_positions %>% 
+  filter(category_status == "Non-Tenured,Cont. Contr. Faculty" | category_status == "Non-Tenured, Non-Regular Faculty" | category_status == "Non-Tenured, Term. Contr. Faculty")
+
+#By comparison, just 13 percent of employees were tenured faculty members with indefinite academic appointments.
+all_tenure <- all_positions %>% 
+  filter(category_status == "Tenured Faculty")
+
+#An additional three percent served in tenure track positions
+all_tenure_track <- all_positions %>% 
+  filter(category_status == "Tenure Track Faculty")
+
+#The median salary for this group was about $8,600.
+jour_lecturers_non_tenure_non_reg <- all_positions %>% 
+  filter(division == "Philip Merrill College of Journalism" & title == "Lecturer" & category_status == "Non-Tenured, Non-Regular Faculty")
+
+median_jour<- median(jour_lecturers_non_tenure_non_reg$appt_base_annual_salary)
+
+#The median salary for business school faculty on the tenure track was $216,5165[cq], while the median[cq] for non-tenured[cq] faculty[cq] on continuing[cq] contracts[cq] was $165,313[cq].
+business_tenure_track <- all_positions %>% 
+  filter(division == "Robert H. Smith School of Business" & category_status == "Tenure Track Faculty")
+
+median_business <- median(business_tenure_track$appt_base_annual_salary)
+
+business_non_tenure <- all_positions %>% 
+  filter(division == "Robert H. Smith School of Business" & category_status == "Non-Tenured,Cont. Contr. Faculty") 
+
+median_business_non_tenure <- median(business_non_tenure$appt_base_annual_salary)
+
+
+#Both figures were more than double the university median at those positions.
+uni_tenure_track <- all_positions %>% 
+  filter(category_status == "Tenure Track Faculty")
+
+median_uni_tenure_track <- median(uni_tenure_track$appt_base_annual_salary)
+
+uni_non_tenure <- all_positions %>% 
+  filter(category_status == "Non-Tenured,Cont. Contr. Faculty")
+
+median_uni_non_tenure <- median(uni_non_tenure$appt_base_annual_salary)
+
+
+##uh oh
+uh_oh <- all_positions %>% 
+  filter(!str_detect("Office of the President|Office of Extended Studies|
+Libraries|Graduate School|Facilities Management|
+Division of Information Technology|Sr VP Academic Affairs & Provost|Undergraduate Studies|Universities at Shady Grove|
+VP Administration|VP Finance & CFO|VP Research|VP Student Affairs|VP University Relations", division)) %>% 
+  group_by(category_status) %>% 
+  summarise(
+    count = n()
+  )
+
+```
+
+
 
 # median salary overall across all positions and divisions - This is used in the HL of beeswarm distribution graphic
 ```{r}
