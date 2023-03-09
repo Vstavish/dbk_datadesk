@@ -55,25 +55,29 @@ ledger_2017 <- read_excel("../ledger_data/2017.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) %>%
+  distinct(po_number, .keep_all=TRUE)
 
 ledger_2018 <- read_excel("../ledger_data/2018.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) %>%
+  distinct(po_number, .keep_all=TRUE)
 
 ledger_2019 <- read_excel("../ledger_data/2019.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) %>%
+  distinct(po_number, .keep_all=TRUE)
 
 ledger_2020 <- read_excel("../ledger_data/2020.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) %>%
+  distinct(po_number, .keep_all=TRUE)
 
 ledger_2021 <- read_excel("../ledger_data/2021.xlsx") %>%
   clean_names() %>%
@@ -81,13 +85,14 @@ ledger_2021 <- read_excel("../ledger_data/2021.xlsx") %>%
     po_date = pay_dt,
     grand_total_amt = amt_paid,
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) 
 
 ledger_2022 <- read_excel("../ledger_data/2022.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  )
+  ) %>%
+  distinct(po_number, .keep_all=TRUE)
 
 ```
 
@@ -110,14 +115,8 @@ for (year in years){
   summarize(
    total_spending = sum(grand_total_amt)
   )
-  # #arrange(desc(amount)) %>%
-  # #select(fiscal_year, clean_payee_name, amount) %>%
-  # group_by(vendor_name) %>%
-  # summarize(
-  #   mce_money = sum(grand_total_amt)
-  # )
   
-  #spending <- bind_rows(spending)
+  spending <- bind_rows(spending)
   
   print(spending)
 }
@@ -129,6 +128,9 @@ plot
   
 
 ```
+
+```
+
 #finding most common depts 2021-2022
 
 ```{r}
