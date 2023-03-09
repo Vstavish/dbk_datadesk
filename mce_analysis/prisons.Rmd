@@ -49,18 +49,21 @@ library(dplyr)
 Reading in data
 ```{r}
 
-ledger_2017 <- read_excel("ledger_data/2017.xls")
-ledger_2018 <- read_excel("ledger_data/2018.xls")
-ledger_2019 <- read_excel("ledger_data/2019.xls")
-ledger_2020 <- read_excel("ledger_data/2020.xls")
-ledger_2021 <- read_excel("ledger_data/2021.xlsx")
-ledger_2022 <- read_excel("ledger_data/2022.xls")
+ledger_2017 <- read_excel("../ledger_data/2017.xls")
+ledger_2018 <- read_excel("../ledger_data/2018.xls")
+ledger_2019 <- read_excel("../ledger_data/2019.xls")
+ledger_2020 <- read_excel("../ledger_data/2020.xls")
+ledger_2021 <- read_excel("../ledger_data/2021.xlsx")
+ledger_2022 <- read_excel("../ledger_data/2022.xls")
 
 ```
 
 Analysis!
 ```{r}
 ### Filtering for Maryland correctional enterprises in each year
+
+years <- 
+
 correctional_spending_2017 <- ledger_2017 %>%
   clean_names %>%
   filter(vendor_name == "MARYLAND CORRECTIONAL")
