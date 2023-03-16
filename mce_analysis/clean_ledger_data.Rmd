@@ -1,0 +1,113 @@
+---
+title: "clean_ledger_data"
+author: "Devon Milley"
+date: "2023-03-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(janitor)
+library(lubridate)
+library(tidytext)
+library(readxl)
+library(writexl)
+
+```
+
+#load data
+```{r}
+#load data
+ledger_2017 <- read_excel("ledger_data/2017.xls") 
+ledger_2018 <- read_excel("ledger_data/2018.xls")
+ledger_2019 <- read_excel("ledger_data/2019.xls")
+ledger_2020 <- read_excel("ledger_data/2020.xls")
+ledger_2021 <- read_excel("ledger_data/2021.xlsx")
+ledger_2022 <- read_excel("ledger_data/2022.xlsx")
+```
+
+#fix
+```{r}
+#combine 2017-2020 and 2022 and fix
+ledger_17_18 <- rbind(ledger_2017, ledger_2018)
+
+ledger_17_18_19 <- rbind(ledger_17_18, ledger_2019)
+
+ledger_17_18_19_20 <- rbind(ledger_17_18_19, ledger_2020) %>% 
+  clean_names()
+
+
+ledger_17_18_19_20_disctinct <- ledger_17_18_19_20 %>% 
+  clean_names() %>% 
+  group_by(po_number, po_date, item_ld, grand_total_amt) %>% 
+  distinct()
+
+#what is getting distincted out
+ledger_17_18_19_20_hm <- ledger_17_18_19_20 %>% 
+  anti_join(ledger_17_18_19_20_distinct)
+
+
+#continue fixing
+ledger_17_18_19_20_clean <- ledger_17_18_19_20_disctinct %>% 
+  ungroup() %>% 
+  group_by(po_number, po_date, grand_total_amt) %>% 
+  mutate(
+    item_count = paste0("count_",row_number())
+  ) %>% 
+  unite("item_ld_qty", c("item_ld", "item_order_qty"), sep=",") %>% 
+  pivot_wider(names_from = item_count, values_from = item_ld_qty) %>% 
+  unite(col="items_qty", c(starts_with("count_")), sep=";", na.rm=TRUE) %>% 
+  mutate(
+    organization_name = ""
+  ) %>% 
+  relocate(
+    items_qty, .before = grand_total_amt
+  )
+
+
+#fix 2021 but grouping by almost all cols -- lost about 3000 rows, uhhh theyre all diff, no po num ? this is fucked with amount and stuff
+ledger_2021_clean <- ledger_2021 %>% 
+  clean_names() %>% 
+  group_by(vendor_name, vendor_address_street, vendor_city, vendor_state, vendor_country, vendor_zip, itm_desc, amt_paid, pay_dt, organization_name) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  group_by(vendor_name, vendor_address_street, vendor_city, vendor_state, vendor_country, vendor_zip, amt_paid, pay_dt, organization_name) %>% 
+  mutate(
+    item_count = paste0("count_", row_number())
+  ) %>% 
+  pivot_wider(names_from = item_count, values_from = itm_desc) %>% 
+  unite(col="items", c(starts_with("count_")), sep=";", na.rm=TRUE) %>% 
+  relocate(
+    items, .before = amt_paid
+  )
+
+
+#add 2022 to clean 12,18,19,20
+ledger_2022_clean <- ledger_2022 %>% 
+  clean_names() %>% 
+  group_by(po_number, po_date, grand_total_amt) %>% 
+  mutate(
+    item_count = paste0("count_",row_number())
+  ) %>% 
+  unite("item_ld_qty", c("item_ld", "item_order_qty"), sep=",") %>% 
+  pivot_wider(names_from = item_count, values_from = item_ld_qty) %>% 
+  unite(col="items_qty", c(starts_with("count_")), sep=";", na.rm=TRUE) %>% 
+  relocate(
+    items_qty, .before = grand_total_amt
+  )
+
+#combine 17_18_19_20 and 22
+ledger_17_18_19_20_22 <- rbind(ledger_17_18_19_20_clean, ledger_2022_clean)
+
+write.csv(ledger_17_18_19_20_22, file = 'ledger_not_2021.csv')
+
+
+```
+
