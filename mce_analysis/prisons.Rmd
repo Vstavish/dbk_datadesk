@@ -55,29 +55,29 @@ ledger_2017 <- read_excel("ledger_data/2017.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  ) %>%
-  distinct(po_number, .keep_all=TRUE)
+  ) #%>%
+  #distinct(po_number, .keep_all=TRUE)
 
 ledger_2018 <- read_excel("ledger_data/2018.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  ) %>%
-  distinct(po_number, .keep_all=TRUE)
+  ) #%>%
+  #distinct(po_number, .keep_all=TRUE)
 
 ledger_2019 <- read_excel("ledger_data/2019.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  ) %>%
-  distinct(po_number, .keep_all=TRUE)
+  ) #%>%
+  #distinct(po_number, .keep_all=TRUE)
 
 ledger_2020 <- read_excel("ledger_data/2020.xls") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  ) %>%
-  distinct(po_number, .keep_all=TRUE)
+  ) #%>%
+  #distinct(po_number, .keep_all=TRUE)
 
 ledger_2021 <- read_excel("ledger_data/2021.xlsx") %>%
   clean_names() %>%
@@ -91,8 +91,8 @@ ledger_2022 <- read_excel("ledger_data/2022.xlsx") %>%
   clean_names() %>%
   mutate(
     year = as.numeric(format(po_date,'%Y'))
-  ) %>%
-  distinct(po_number, .keep_all=TRUE)
+  ) #%>%
+  #distinct(po_number, .keep_all=TRUE)
 
 ```
 
