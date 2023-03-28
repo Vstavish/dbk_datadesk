@@ -1,0 +1,263 @@
+---
+title: "reader_survey_spring_23"
+author: "Victoria Stavish"
+date: "2023-03-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+# load libraries
+
+```{r}
+
+library(janitor)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(writexl)
+library(readxl)
+library(lubridate)
+
+```
+
+# load all data
+
+```{r}
+
+reader_survey <- read_csv("dbk_readers_survey.csv")
+
+student_survey73 <- read_csv("reader_survey_students73.xlsx")
+
+student_survey75 <- read_csv("reader_survey_students75.csv")
+
+staff_survey <- read_csv("dbk_staff_survey.xlsx")
+
+```
+# how many of each type of responded were there? Are we more popular among younger or older students?
+# how many of each gender?
+# which content areas most or least popular? among groups?
+# what do people want more of? among groups?
+# which device most pop?
+# likelihood of downloading app frequency
+# Where are our folowers? by group?
+# 
+
+```{r}
+
+reader_gender <- reader_survey %>%
+  clean_names() %>%
+  group_by(what_is_your_gender) %>%
+  count()
+
+```
+
+# 327 people responded
+
+# age range
+
+```{r}
+
+survey_age <- reader_survey %>%
+  clean_names() %>%
+  group_by(what_is_your_age_range_if_under_18_years_old_please_stop_here_and_do_not_complete_this_survey_select_one) %>%
+  count()
+
+write_xlsx(survey_age,'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/reader_survey_spring_23/survey_age.xlsx')
+
+```
+
+# faculty v students v residents
+
+```{r}
+
+occupation <- reader_survey %>%
+  clean_names() %>%
+  group_by(i_am_a_select_as_many_as_apply) %>%
+  count()
+  
+
+
+```
+
+# frequency of readership frequency? How does that change among groups?
+
+```{r}
+
+frequency <- reader_survey %>%
+  clean_names() %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+
+frequency_students <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "UMD student") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+frequency_employees <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "UMD faculty/staff") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+frequency_cp <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "College Park citizen or official/non-student") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+frequency_alum <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "UMD alumni") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+frequency_parent <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "Parent of a former student") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+frequency_parent1 <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "Parent of a current student") %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+  
+```
+
+# popular content areas
+
+```{r}
+
+topic_overall <- reader_survey %>%
+  clean_names() %>%
+  group_by(when_i_do_read_the_diamondback_i_most_often_choose_content_in_these_areas_select_all_that_apply) %>%
+  count()
+
+
+```
+
+# content areas for students
+
+```{r}
+
+topic_student <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "UMD student") %>%
+  group_by(when_i_do_read_the_diamondback_i_most_often_choose_content_in_these_areas_select_all_that_apply) %>%
+  count()
+
+```
+
+# content areas for staff/faculty
+
+```{r}
+
+topic_employee <- reader_survey %>%
+  clean_names() %>%
+  filter(i_am_a_select_as_many_as_apply == "UMD faculty/staff") %>%
+  group_by(when_i_do_read_the_diamondback_i_most_often_choose_content_in_these_areas_select_all_that_apply) %>%
+  count()
+
+```
+
+# Readership frequency by group
+
+```{r}
+
+frequency_read <- reader_survey %>%
+  clean_names() %>%
+  group_by(i_am_a_select_as_many_as_apply, which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+write_xlsx(frequency_read,'C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/reader_survey_spring_23/survey_age.xlsx')
+
+```
+
+# content desire by group
+
+```{r}
+
+desired_content<- reader_survey %>%
+  clean_names() %>%
+  group_by(i_am_a_select_as_many_as_apply, which_of_the_following_would_you_like_to_see_more_of_from_the_diamondback_select_all_that_apply) %>%
+  count()
+
+
+```
+
+# content areas by group
+
+```{r}
+
+topic_by_group <- reader_survey %>%
+  clean_names() %>%
+  group_by(i_am_a_select_as_many_as_apply, when_i_do_read_the_diamondback_i_most_often_choose_content_in_these_areas_select_all_that_apply) %>%
+  count()
+  
+
+```
+
+# how they read
+
+```{r}
+
+device <- reader_survey %>%
+  clean_names() %>%
+  group_by(what_type_of_device_do_you_most_often_use_to_access_the_diamondback_select_all_that_apply) %>%
+  count()
+
+```
+
+# followers
+
+```{r}
+
+
+followers_overall <- reader_survey %>%
+  clean_names() %>%
+  group_by(do_you_follow_the_diamondback_on_any_of_the_following_select_all_that_apply) %>%
+  count()
+
+followers <- reader_survey %>%
+  clean_names() %>%
+  group_by(i_am_a_select_as_many_as_apply, do_you_follow_the_diamondback_on_any_of_the_following_select_all_that_apply) %>%
+  count()
+
+```
+
+
+```{r}
+
+sources <- reader_survey %>%
+  clean_names() %>%
+  group_by(which_sources_of_news_do_you_use_to_stay_updated_on_campus_information_that_is_relevant_to_you_select_all_that_apply) %>%
+  count()
+
+
+```
+
+#app
+
+```{r}
+
+app <- reader_survey %>%
+  clean_names() %>%
+  group_by(on_a_scale_of_1_to_5_if_you_knew_that_the_diamondback_had_a_mobile_app_how_likely_would_you_be_to_download_it) %>%
+  count()
+  
+
+```
+

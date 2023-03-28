@@ -1,0 +1,112 @@
+---
+title: "staff_survey_spring_23"
+author: "Victoria Stavish"
+date: "2023-03-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# load libraries
+
+```{r}
+
+library(janitor)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(writexl)
+library(readxl)
+library(lubridate)
+
+```
+
+# load all data
+
+```{r}
+
+staff_survey <- read_csv("C:/Users/Vstav/OneDrive/Documents/GitHub/dbk_datadesk/dbk_staff_survey1.csv")
+
+```
+
+# gender breakdown
+
+```{r}
+
+gender <- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(what_is_your_gender) %>%
+  count()
+
+
+```
+
+# age
+
+```{r}
+age <- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(what_is_your_age_range_if_under_18_years_old_please_stop_here_and_do_not_complete_this_survey_select_one) %>%
+  count()
+
+```
+
+# year
+
+```{r}
+
+year <- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(if_a_current_umd_student_which_best_describes_you_select_one) %>%
+  count()
+
+```
+
+# frequency
+
+```{r}
+
+staff_frequency <- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(which_best_describes_how_often_you_read_the_diamondback) %>%
+  count()
+
+```
+
+# content
+
+```{r}
+
+staff_content <-  dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(when_i_do_read_the_diamondback_i_most_often_choose_content_in_these_areas_select_all_that_apply) %>%
+  count()
+
+
+```
+
+# desired content
+
+```{r}
+
+staff_desired_content<- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(which_of_the_following_would_you_like_to_see_more_of_from_the_diamondback_select_all_that_apply) %>%
+  count()
+
+```
+
+# sources
+
+```{r}
+sources <- dbk_staff_survey1 %>%
+  clean_names() %>%
+  group_by(which_sources_of_news_do_you_use_to_stay_updated_on_campus_information_that_is_relevant_to_you_select_all_that_apply) %>%
+  count()
+
+```
+
+

@@ -1,0 +1,73 @@
+---
+title: "ledger_analysis"
+author: "Victoria Stavish"
+date: "2023-03-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+library(tidyverse)
+#install.packages("dplyr")
+library(janitor)
+library(lubridate)
+#install.packages("censusxy")
+library(censusxy)
+library(dplyr)
+library(parallel)
+library(tictoc)
+library(furrr)
+library(leaflet)
+library(leaflet.extras)
+library(sf)
+#install.packages("sp")
+library(sp)
+#install.packages("readxl")
+library(readxl)
+library(data.table)
+library(jsonlite)
+library(geojsonsf)
+library(geojsonio)
+#install.packages(c("rgdal", "tidycensus"))
+library(tidycensus)
+#install.packages("fuzzyjoin")
+library(fuzzyjoin)
+#install.packages("stringdist")
+library(stringdist)
+#install.packages("rmapzen")
+library(rmapzen)
+#install.packages("writexl")
+library(writexl)
+library(rgdal)
+#install.packages("spatialEco")
+library(spatialEco)
+#install.packages("raster")
+library(raster)
+library(dplyr)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+
+ledger_2017 <- read_excel("2017.xls")
+ledger_2018 <- read_excel("2018.xls")
+ledger_2019 <- read_excel("2019.xls")
+ledger_2020 <- read_excel("2020.xls")
+ledger_2021 <- read_excel("2021.xlsx")
+
+```
+
+```
