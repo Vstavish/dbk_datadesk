@@ -29,7 +29,7 @@ ledger_2017 <- read_excel("ledger_data/2017.xls")
 ledger_2018 <- read_excel("ledger_data/2018.xls")
 ledger_2019 <- read_excel("ledger_data/2019.xls")
 ledger_2020 <- read_excel("ledger_data/2020.xls")
-ledger_2021 <- read_excel("ledger_data/2021.xlsx")
+ledger_2021 <- read_excel("ledger_data/2021.xls")
 ledger_2022 <- read_excel("ledger_data/2022.xlsx")
 ```
 
@@ -41,57 +41,28 @@ ledger_17_18 <- rbind(ledger_2017, ledger_2018)
 ledger_17_18_19 <- rbind(ledger_17_18, ledger_2019)
 
 ledger_17_18_19_20 <- rbind(ledger_17_18_19, ledger_2020) %>% 
+  mutate(
+    "Organization Name" = ""
+  ) 
+
+ledger_17_18_19_20_21 <- rbind(ledger_17_18_19_20, ledger_2021)
+
+ledger_all <- rbind(ledger_17_18_19_20_21, ledger_2022) %>% 
   clean_names()
 
-
-ledger_17_18_19_20_disctinct <- ledger_17_18_19_20 %>% 
+ledger_all_distinct <- ledger_all %>% 
   clean_names() %>% 
-  group_by(po_number, po_date, item_ld, grand_total_amt) %>% 
+  group_by(po_number, vendor_name, vendor_address_1, vendor_address_2, vendor_city, vendor_state, vendor_country, vendor_zip, po_date, item_ld, item_order_qty, grand_total_amt, organization_name) %>% 
   distinct()
 
-#what is getting distincted out
-ledger_17_18_19_20_hm <- ledger_17_18_19_20 %>% 
-  anti_join(ledger_17_18_19_20_distinct)
+#what is getting distincted out -- this isnt working rawr DM
+ledger_all_hm <- ledger_all_distinct %>% 
+  anti_join(ledger_all, by=c("po_number", "vendor_name", "vendor_address_1", "vendor_address_2","vendor_city", "vendor_state", "vendor_country", "vendor_zip", "po_date", "item_ld", "item_order_qty", "grand_total_amt", "organization_name"))
 
 
 #continue fixing
-ledger_17_18_19_20_clean <- ledger_17_18_19_20_disctinct %>% 
+ledger_all_clean <- ledger_all_distinct %>% 
   ungroup() %>% 
-  group_by(po_number, po_date, grand_total_amt) %>% 
-  mutate(
-    item_count = paste0("count_",row_number())
-  ) %>% 
-  unite("item_ld_qty", c("item_ld", "item_order_qty"), sep=",") %>% 
-  pivot_wider(names_from = item_count, values_from = item_ld_qty) %>% 
-  unite(col="items_qty", c(starts_with("count_")), sep=";", na.rm=TRUE) %>% 
-  mutate(
-    organization_name = ""
-  ) %>% 
-  relocate(
-    items_qty, .before = grand_total_amt
-  )
-
-
-#fix 2021 but grouping by almost all cols -- lost about 3000 rows, uhhh theyre all diff, no po num ? this is fucked with amount and stuff
-ledger_2021_clean <- ledger_2021 %>% 
-  clean_names() %>% 
-  group_by(vendor_name, vendor_address_street, vendor_city, vendor_state, vendor_country, vendor_zip, itm_desc, amt_paid, pay_dt, organization_name) %>% 
-  distinct() %>% 
-  ungroup() %>% 
-  group_by(vendor_name, vendor_address_street, vendor_city, vendor_state, vendor_country, vendor_zip, amt_paid, pay_dt, organization_name) %>% 
-  mutate(
-    item_count = paste0("count_", row_number())
-  ) %>% 
-  pivot_wider(names_from = item_count, values_from = itm_desc) %>% 
-  unite(col="items", c(starts_with("count_")), sep=";", na.rm=TRUE) %>% 
-  relocate(
-    items, .before = amt_paid
-  )
-
-
-#add 2022 to clean 12,18,19,20
-ledger_2022_clean <- ledger_2022 %>% 
-  clean_names() %>% 
   group_by(po_number, po_date, grand_total_amt) %>% 
   mutate(
     item_count = paste0("count_",row_number())
@@ -103,10 +74,9 @@ ledger_2022_clean <- ledger_2022 %>%
     items_qty, .before = grand_total_amt
   )
 
-#combine 17_18_19_20 and 22
-ledger_17_18_19_20_22 <- rbind(ledger_17_18_19_20_clean, ledger_2022_clean)
 
-write.csv(ledger_17_18_19_20_22, file = 'ledger_not_2021.csv')
+
+write.csv(ledger_all_clean, file = 'ledger_all_clean.csv')
 
 
 ```
